@@ -1,0 +1,2019 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{matlab-prettifier}
+\usepackage{lstautogobble}  % Fix relative indenting
+\usepackage{color}          % Code coloring
+% \usepackage{zi4}            % Nice font
+
+\definecolor{bluekeywords}{rgb}{0.13, 0.13, 1}
+\definecolor{greencomments}{rgb}{0, 0.5, 0}
+\definecolor{redstrings}{rgb}{0.9, 0, 0}
+\definecolor{graynumbers}{rgb}{0.5, 0.5, 0.5}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+soul
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "~/.lyx/templates/math_shorthand.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Homework 1
+\end_layout
+
+\begin_layout Author
+Ziheng Chen (zc5282)
+\end_layout
+
+\begin_layout Enumerate
+Suppose that 
+\begin_inset Formula $A$
+\end_inset
+
+ is a real symmetric 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ matrix.
+ Let 
+\begin_inset Formula $\left\{ v_{j}\right\} _{j=1}^{n}$
+\end_inset
+
+ denote an orthonormal set of eigenvectors so that 
+\begin_inset Formula $Av_{j}=\lambda_{j}v_{j}$
+\end_inset
+
+ for some numbers 
+\begin_inset Formula $\lambda_{j}$
+\end_inset
+
+ .
+ Let us use an ordering where 
+\begin_inset Formula $\abs{\lambda_{1}}\ge\dots\ge\abs{\lambda_{n}}$
+\end_inset
+
+.
+ Define a sequence of vectors 
+\begin_inset Formula $x_{p}:=A^{p}g$
+\end_inset
+
+, where 
+\begin_inset Formula $g$
+\end_inset
+
+ is an 
+\begin_inset Formula $n\times1$
+\end_inset
+
+ random vector whose entries are drawn independently from a standard Gaussian
+ distribution.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+I worked on the older version of this problem so it might look a bit different
+ from the current version, but most calculation should apply.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Set 
+\begin_inset Formula $\beta=\abs{\lambda_{2}}/\abs{\lambda_{1}}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{p}:=x_{p}/\norm{x_{p}}$
+\end_inset
+
+.
+ Assume 
+\begin_inset Formula $\lambda_{1}=1$
+\end_inset
+
+ and 
+\begin_inset Formula $\beta<1$
+\end_inset
+
+.
+ Prove that as 
+\begin_inset Formula $p\to\infty$
+\end_inset
+
+, there exists a constant 
+\begin_inset Formula $c$
+\end_inset
+
+ s.t.
+ the vectors 
+\begin_inset Formula $\left\{ x_{p}\right\} $
+\end_inset
+
+ (or 
+\begin_inset Formula $\left\{ y_{p}\right\} $
+\end_inset
+
+) converge to 
+\begin_inset Formula $cv_{1}$
+\end_inset
+
+ (or either to 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ or 
+\begin_inset Formula $-v_{1}$
+\end_inset
+
+, respectively).
+\end_layout
+
+\begin_layout Enumerate
+What is the speed of convergence of 
+\begin_inset Formula $\left\{ y_{p}\right\} $
+\end_inset
+
+? 
+\end_layout
+
+\begin_layout Enumerate
+Assume again that 
+\begin_inset Formula $\beta<1$
+\end_inset
+
+, but now drop the assumption that 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+.
+ Prove that your answers in (a) and (b) are still correct, with the exception
+ that if 
+\begin_inset Formula $\lambda_{1}<0$
+\end_inset
+
+, then it is the vector 
+\begin_inset Formula $\left(-1\right)^{p}y_{p}$
+\end_inset
+
+ that converges instead.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Enumerate
+We decompose 
+\begin_inset Formula $g$
+\end_inset
+
+ on the orthonormal basis 
+\begin_inset Formula $\left\{ v_{j}\right\} $
+\end_inset
+
+ by
+\begin_inset Formula 
+\[
+g=\sum_{j=1}^{n}c_{j}v_{j},c_{j}=\left\langle g,v_{j}\right\rangle .
+\]
+
+\end_inset
+
+Then, since 
+\begin_inset Formula $g$
+\end_inset
+
+ follows the standard Gaussian distribution, the probability that 
+\begin_inset Formula $c_{1}=0$
+\end_inset
+
+, i.e.
+ that 
+\begin_inset Formula $g$
+\end_inset
+
+ is orthogonal to 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+, is zero since 
+\begin_inset Formula 
+\[
+\bP\left(\left\langle g,v_{1}\right\rangle =0\right)=\int_{\left\{ g|\left\langle g,v\right\rangle =0\right\} }\left(2\pi\right)^{-n/2}\exp\left(-\frac{1}{2}\abs g^{2}\right)\d g
+\]
+
+\end_inset
+
+where the integral domain 
+\begin_inset Formula $\left\{ g|\left\langle g,v\right\rangle =0\right\} $
+\end_inset
+
+ has measure zero.
+ Therefore 
+\begin_inset Formula $c_{1}\neq0$
+\end_inset
+
+ with probability 1.
+\begin_inset Newline newline
+\end_inset
+
+Now we turn to estimate 
+\begin_inset Formula $x_{p}$
+\end_inset
+
+ and 
+\begin_inset Formula $y_{p}$
+\end_inset
+
+.
+ A direct calculation yields
+\begin_inset Formula 
+\[
+x_{p}=A^{p}g=A^{p}\left(\sum_{j=1}^{n}c_{j}v_{j}\right)=\sum_{j=1}^{n}c_{j}\lambda_{j}^{p}v_{j}
+\]
+
+\end_inset
+
+and
+\begin_inset Formula 
+\begin{equation}
+\abs{c_{1}}+\sum_{j=2}^{n}\abs{c_{j}}\abs{\lambda_{j}}^{p}\ge\norm{x_{p}}\ge\abs{c_{1}}-\sum_{j=2}^{n}\abs{c_{j}}\abs{\lambda_{j}}^{p}.\label{eq:p1-a-xp norm estimate}
+\end{equation}
+
+\end_inset
+
+The convergence of 
+\begin_inset Formula $x_{p}$
+\end_inset
+
+ is straightforward:
+\begin_inset Formula 
+\[
+\norm{x_{p}-c_{1}v_{1}}\le\sum_{j=2}^{n}\abs{c_{j}}\abs{\lambda_{j}}^{p}\le\sum_{j=2}^{n}\abs{c_{j}}\beta^{p}\to0,p\to\infty.
+\]
+
+\end_inset
+
+Notice that 
+\begin_inset Formula $\abs{\lambda_{j}}\le\beta$
+\end_inset
+
+ for 
+\begin_inset Formula $j\ge2$
+\end_inset
+
+, thus
+\begin_inset Formula 
+\[
+\sum_{j=2}^{n}\abs{c_{j}}\abs{\lambda_{j}}^{p}\le\beta^{p}\sum_{j=2}^{n}\abs{c_{j}}\to0
+\]
+
+\end_inset
+
+as 
+\begin_inset Formula $p\to\infty$
+\end_inset
+
+, so RHS of Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p1-a-xp norm estimate"
+
+\end_inset
+
+ will be positive eventually.
+ Let 
+\begin_inset Formula $S$
+\end_inset
+
+ denote 
+\begin_inset Formula $\sum_{j=2}^{n}\abs{c_{j}}$
+\end_inset
+
+.
+ Then we compare 
+\begin_inset Formula $y_{p}$
+\end_inset
+
+ with 
+\begin_inset Formula $\frac{c_{1}}{\abs{c_{1}}}v_{1}$
+\end_inset
+
+:
+\begin_inset Formula 
+\begin{equation}
+\abs{y_{p}-\frac{c_{1}}{\abs{c_{1}}}v_{1}}=\abs{\frac{x_{p}}{\norm{x_{p}}}-\frac{c_{1}}{\abs{c_{1}}}v_{1}}\le\underbrace{\abs{\frac{c_{1}v_{1}}{\norm{x_{p}}}-\frac{c_{1}}{\abs{c_{1}}}v_{1}}}_{=:I_{1}}+\underbrace{\abs{\frac{\sum_{j=2}^{n}c_{j}\lambda_{j}^{p}v_{j}}{\norm{x_{p}}}}}_{=:I_{2}}.\label{eq:p1-a-yp error}
+\end{equation}
+
+\end_inset
+
+For 
+\begin_inset Formula $I_{1}$
+\end_inset
+
+, since 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ has norm 1, we have
+\begin_inset Formula 
+\begin{equation}
+I_{1}=\abs{\frac{c_{1}}{\norm{x_{p}}}-\frac{c_{1}}{\abs{c_{1}}}}=\frac{\abs{\abs{c_{1}}-\norm{x_{p}}}}{\norm{x_{p}}}\le\frac{\sum_{j=2}^{n}\abs{c_{j}}\abs{\lambda_{j}}^{p}}{\abs{c_{1}}-\sum_{j=2}^{n}\abs{c_{j}}\abs{\lambda_{j}}^{p}}\le\frac{S\beta^{p}}{\abs{c_{1}}-S\beta^{p}}.\label{eq:p1-a-I1}
+\end{equation}
+
+\end_inset
+
+For 
+\begin_inset Formula $I_{2}$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{equation}
+I_{2}\le\frac{\sum_{j=2}^{n}\abs{c_{j}}\abs{\lambda_{j}}^{p}}{\norm{x_{p}}}\le\frac{S\beta^{p}}{\abs{c_{1}}-S\beta^{p}}.\label{eq:p1-a-I2}
+\end{equation}
+
+\end_inset
+
+Put Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p1-a-yp error"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p1-a-I1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+, and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p1-a-I2"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ together:
+\begin_inset Formula 
+\begin{equation}
+\abs{y_{p}-\frac{c_{1}}{\abs{c_{1}}}v_{1}}\le\frac{2S\beta^{p}}{\abs{c_{1}}-S\beta^{p}}\to0\ \text{as}\ p\to\infty.\label{eq:p1-a-final}
+\end{equation}
+
+\end_inset
+
+Thus 
+\begin_inset Formula $y_{p}$
+\end_inset
+
+ converges to 
+\begin_inset Formula $\frac{c_{1}}{\abs{c_{1}}}v_{1}$
+\end_inset
+
+ eventually.
+\end_layout
+
+\begin_layout Enumerate
+The speed of convergence, given by Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p1-a-final"
+
+\end_inset
+
+, reads
+\begin_inset Formula 
+\[
+\frac{2S\beta^{p}}{\abs{c_{1}}-S\beta^{p}}\le\frac{4S}{\abs{c_{1}}}\beta^{p}
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $p$
+\end_inset
+
+ large enough, thus it is of linear convergence.
+\end_layout
+
+\begin_layout Enumerate
+In the general case where 
+\begin_inset Formula $\lambda_{1}$
+\end_inset
+
+ is not necessary 1, we only need to consider the power iteration for 
+\begin_inset Formula $B:=\frac{1}{\lambda_{1}}A$
+\end_inset
+
+ and the corresponding iteration sequence 
+\begin_inset Formula $\widetilde{x}_{p}:=B^{p}g$
+\end_inset
+
+ and 
+\begin_inset Formula $\widetilde{y}_{p}:=\frac{1}{\norm{\widetilde{x}_{p}}}\widetilde{x}_{p}$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula 
+\[
+x_{p}=A^{p}g=\lambda_{1}^{p}Bg=\lambda_{1}^{p}\widetilde{x}_{p},
+\]
+
+\end_inset
+
+thus after normalization, 
+\begin_inset Formula 
+\[
+y_{p}=\frac{1}{\norm{x_{p}}}x_{p}=\frac{1}{\norm{\lambda_{1}^{p}\widetilde{x}_{p}}}\lambda_{1}^{p}\widetilde{x}_{p}=\sgn\left(\lambda_{1}\right)^{p}\frac{1}{\norm{\widetilde{x}_{p}}}\widetilde{x}_{p}=\sgn\left(\lambda_{1}\right)^{p}\widetilde{y}_{p}.
+\]
+
+\end_inset
+
+Since the largest eigenvalue of 
+\begin_inset Formula $B$
+\end_inset
+
+ is exactly 1, we know that 
+\begin_inset Formula $\widetilde{y}_{p}$
+\end_inset
+
+ converges to 
+\begin_inset Formula $v_{1}$
+\end_inset
+
+ or 
+\begin_inset Formula $-v_{1}$
+\end_inset
+
+, thus 
+\begin_inset Formula $\sgn\left(\lambda_{1}\right)^{p}y_{p}$
+\end_inset
+
+ also converges to the same limit, i.e.
+ 
+\begin_inset Formula $\left\{ y_{p}\right\} $
+\end_inset
+
+ is convergent for 
+\begin_inset Formula $\lambda_{1}>0$
+\end_inset
+
+ and 
+\begin_inset Formula $\left\{ \left(-1\right)^{p}y_{p}\right\} $
+\end_inset
+
+ is convergent for 
+\begin_inset Formula $\lambda_{1}<0$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In this exercise, we explore blocked versions of power iteration where we
+ run power iteration on several vectors at once.
+ Such techniques often go under the name “subspace iteration” in the literature.
+ Let 
+\begin_inset Formula $A$
+\end_inset
+
+ be an 
+\begin_inset Formula $n\times n$
+\end_inset
+
+ matrix, and assume that 
+\begin_inset Formula $A$
+\end_inset
+
+ has an eigenvalue decomposition 
+\begin_inset Formula $A=VDV^{−1}$
+\end_inset
+
+.
+ In a simple version of subspace iteration, we start with 
+\begin_inset Formula $l$
+\end_inset
+
+ Gaussian vectors 
+\begin_inset Formula $\left\{ g_{j}\right\} _{j=1}^{l}$
+\end_inset
+
+ that we collect into a matrix 
+\begin_inset Formula $G=\left[g_{1},\dots,g_{l}\right]\in\bR^{n\times l}$
+\end_inset
+
+.
+ The iteration then computes the matrices
+\begin_inset Formula 
+\begin{align*}
+Y_{1} & =AG,\\
+Y_{k} & =AY_{k-1},\quad k=2,3,4,\dots
+\end{align*}
+
+\end_inset
+
+The idea is that as 
+\begin_inset Formula $k$
+\end_inset
+
+ grows, the space 
+\begin_inset Formula $\text{col}\left(Y_{k}\right)$
+\end_inset
+
+ will successively better align with the space spanned by the dominant 
+\begin_inset Formula $k$
+\end_inset
+
+ eigenvectors.
+ After 
+\begin_inset Formula $k$
+\end_inset
+
+ steps, we orthonormalize the vectors 
+\begin_inset Formula $Y_{k}$
+\end_inset
+
+ to form an orthonormal matrix 
+\begin_inset Formula $Q_{k}$
+\end_inset
+
+ whose columns are an ON basis for 
+\begin_inset Formula $\text{col}\left(Y_{k}\right)$
+\end_inset
+
+.
+ Practically, we execute this via a QR factorization 
+\begin_inset Formula $Y_{k}=Q_{k}R_{k}$
+\end_inset
+
+.
+ We then compute the 
+\begin_inset Formula $l$
+\end_inset
+
+ eigenvalues of the matrix 
+\begin_inset Formula $B_{k}=Q_{k}^{*}AQ_{k},$
+\end_inset
+
+ and claim that these 
+\begin_inset Formula $l$
+\end_inset
+
+ values typically converge to the 
+\begin_inset Formula $k$
+\end_inset
+
+ largest (in modulus) eigenvectors of 
+\begin_inset Formula $A$
+\end_inset
+
+.
+ The figure on the left shows a simple Matlab code that sets up a test matrix,
+ executes the iteration, and computes the corresponding errors.
+ The figure on the right shows the errors computed in the array 
+\family typewriter
+ERR
+\family default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\shape italic
+The reason convergence quickly stops is that round-off errors aggregate
+ at every step.
+ Insert the line 
+\family typewriter
+[Y,∼] = qr(Y,0)
+\family default
+ immediately after the line with the for command.
+ Then rerun the experiment.
+ Hand in a figure of the new convergence plot.
+\shape default
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename p2-pert.epsc
+	width 60line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+Estimate numerically the slopes of the five lines in the graph you generate
+ in (a).
+ Form an hypothesis of the speed of convergence as a function of the eigenvalues
+ and of 
+\begin_inset Formula $l$
+\end_inset
+
+ and 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ (Observe that 
+\begin_inset Formula $\lambda_{j}=2^{-j}$
+\end_inset
+
+ in this example.)
+\shape default
+
+\begin_inset Newline newline
+\end_inset
+
+We list the output of the program as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Verbatim*
+
+Eig val #1: slope=28.97
+\end_layout
+
+\begin_layout Verbatim*
+
+Eig val #2: slope=16.49
+\end_layout
+
+\begin_layout Verbatim*
+
+Eig val #3: slope=6.94
+\end_layout
+
+\begin_layout Verbatim*
+
+Eig val #4: slope=3.03
+\end_layout
+
+\begin_layout Verbatim*
+
+Eig val #5: slope=2.14
+\end_layout
+
+\begin_layout Standard
+
+Here by slope
+\begin_inset Formula $=\beta$
+\end_inset
+
+ we mean that the error 
+\begin_inset Formula $e_{n+1}\approx e_{n}/\beta$
+\end_inset
+
+.
+
+\lang english
+ The rate of convergence decreases exponentially with the order of magnitude
+ of the eigenvalue.
+ To be specific, each slope differ by a factor of 2.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape italic
+Replace the line 
+\family typewriter
+V = randn(m) + eye(m); 
+\family default
+by
+\family typewriter
+ [V,∼] = qr(randn(n));
+\family default
+.
+ Observe that this results in a matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ that is symmetric, since then 
+\begin_inset Formula $V^{−1}=V^{∗}$
+\end_inset
+
+.
+ Run the experiment again.
+ Hand in the graph of the errors, and form a new conjecture on the speed
+ of convergence.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename p2-on.epsc
+	width 60line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This time, the slope is increased by a factor of 4 between eigenvalues.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape italic
+Choose some other matrix, and some other value of 
+\begin_inset Formula $l$
+\end_inset
+
+, and see if your hypotheses from (b) and (c) hold up.
+ Turn in one representative example.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename p2-3on.epsc
+	width 60line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Here we set 
+\begin_inset Formula $\lambda_{j}=1.5^{-j}$
+\end_inset
+
+ and we seek to approximate the first five eigenvalues of the 20-by-20 matrix.
+ This time, the slope is increased by a factor of around 2 between eigenvalues.
+ So we guess that the convergence speed is increased by the square of the
+ ratio between eigenvalues.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape italic
+[Optional, except for reference solution:] Prove that if all computations
+ were executed in exact arithmetic, then the modification described in (a)
+ would make no difference to the estimates of the eigenvalues.
+\shape default
+
+\begin_inset Newline newline
+\end_inset
+
+The vanilla algorithm (no re-orthogonalization at each step) reads
+\begin_inset Formula 
+\[
+Y_{k}=A^{k}G,Y_{k}=Q_{k}R_{k},
+\]
+
+\end_inset
+
+so 
+\begin_inset Formula $Q_{k}=A^{k}GR_{k}^{-1}$
+\end_inset
+
+.
+ For the improved method, 
+\begin_inset Formula 
+\[
+\widetilde{Y}_{k}:=A\widetilde{Q}_{k-1},\widetilde{Q}_{k-1}\widetilde{R}_{k-1}=\widetilde{Y}_{k-1},
+\]
+
+\end_inset
+
+so the ending term 
+\begin_inset Formula 
+\[
+\widetilde{Q}_{k}=\widetilde{Y}_{k}\widetilde{R}_{k}^{-1}=A\widetilde{Q}_{k-1}\widetilde{R}_{k}^{-1}=\dots=A^{k}G\widetilde{R}_{1}^{-1}\dots\widetilde{R}_{k}^{-1}.
+\]
+
+\end_inset
+
+Note that since 
+\begin_inset Formula $R_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $\widetilde{R}_{1},\dots,\widetilde{R}_{k}$
+\end_inset
+
+ are all upper-triangluar matrices, thus 
+\begin_inset Formula $\text{col}\widetilde{Q}_{k}=\text{col}Q_{k}$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $\widetilde{Q}_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $Q_{k}$
+\end_inset
+
+ are orthogonal matrices, they must only differ by a unity matrix, thus
+ it makes no difference for the eigenvalues of 
+\begin_inset Formula $\widetilde{B}_{k}=\widetilde{Q}_{k}^{*}A\widetilde{Q}_{k}$
+\end_inset
+
+ and 
+\begin_inset Formula $B_{k}=Q_{k}^{*}AQ_{k}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+(Exercise 35.4 from Trefethen & Bau)
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Describe an 
+\begin_inset Formula $\cO\left(n^{2}\right)$
+\end_inset
+
+ algorithm based on QR factorization by Givens rotations (Exercise 10.4)
+ for solving the least squares problem of Algorithm 35.1.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Show how the operation count can be improved to 
+\begin_inset Formula $\cO\left(n\right)$
+\end_inset
+
+, as mentioned on p.
+ 268, if the problem for step 
+\begin_inset Formula $n-1$
+\end_inset
+
+ has already been solved.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+The algorithm is described as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+We carry out QR factorization on the Hessenberg matrix 
+\begin_inset Formula $\widetilde{H_{n}}$
+\end_inset
+
+ of size 
+\begin_inset Formula $\left(n+1\right)\times n$
+\end_inset
+
+ and obtain 
+\begin_inset Formula $Q_{n}\in\bR^{\left(n+1\right)\times n}$
+\end_inset
+
+ and 
+\begin_inset Formula $R_{n}\in\bR^{n\times n}$
+\end_inset
+
+ s.t.
+ 
+\begin_inset Formula $\widetilde{H_{n}}=Q_{n}R_{n}$
+\end_inset
+
+; this step requires 
+\begin_inset Formula $\cO\left(n^{2}\right)$
+\end_inset
+
+ flops.
+\end_layout
+
+\begin_layout Enumerate
+Solve the upper-triagular system 
+\begin_inset Formula $R_{n}y_{n}=\norm bQ_{n}^{*}e_{1}$
+\end_inset
+
+; this step requires 
+\begin_inset Formula $\cO\left(n^{2}\right)$
+\end_inset
+
+ flops as well.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+The method is guaranteed to yield the minimizer due to the following two
+ reasons:
+\end_layout
+
+\begin_layout Enumerate
+By the upper-Hessenberg structure of 
+\begin_inset Formula $\widetilde{H_{n}}$
+\end_inset
+
+ and non-vanishing lower-diagonal line, we confirm that 
+\begin_inset Formula $\widetilde{H_{n}}$
+\end_inset
+
+ is of full rank and thus 
+\begin_inset Formula $R_{n}$
+\end_inset
+
+ is also of full rank.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $\widetilde{q}$
+\end_inset
+
+ be a unit vector that is orthogonal to 
+\begin_inset Formula $\text{col}Q_{n}$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $\widetilde{Q_{n}}=\left[Q_{n},\widetilde{q}\right]$
+\end_inset
+
+ is also an orthogonal matrix and
+\begin_inset Formula 
+\[
+\widetilde{H_{n}}=\widetilde{Q_{n}}\left[\begin{array}{c}
+R_{n}\\
+0
+\end{array}\right]=:\widetilde{Q_{n}}\widetilde{R_{n}}.
+\]
+
+\end_inset
+
+Thus, 
+\begin_inset Formula 
+\[
+\norm{\widetilde{H_{n}}y-\norm be_{1}}=\norm{\widetilde{R_{n}}y_{n}-\widetilde{Q_{n}}^{*}\norm be_{1}}=\norm{\left[\begin{array}{c}
+R_{n}y_{n}\\
+0
+\end{array}\right]-\left[\begin{array}{c}
+Q_{n}^{*}\norm be_{1}\\
+\widetilde{q}^{*}
+\end{array}\right]}
+\]
+
+\end_inset
+
+and minimizing 
+\begin_inset Formula $\norm{\widetilde{H_{n}}y_{n}-\norm be_{1}}$
+\end_inset
+
+ is equivalent to minimizing 
+\begin_inset Formula $\norm{R_{n}y_{n}-\norm bQ_{n}^{*}e_{1}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+The QR factorization for a Hessenburg 
+\begin_inset Formula $\widetilde{H_{n}}$
+\end_inset
+
+ based on Givens transform is derived as follows:
+\end_layout
+
+\begin_layout Enumerate
+start with 
+\begin_inset Formula $Q^{0}=I_{\left(n+1\right)\times\left(n+1\right)},R^{0}=\widetilde{H_{n}}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+for 
+\begin_inset Formula $1\le i\le n$
+\end_inset
+
+, assume we already have 
+\begin_inset Formula $Q^{i-1}$
+\end_inset
+
+ and 
+\begin_inset Formula $R^{i-1}$
+\end_inset
+
+ which is diagonal for the upper-left 
+\begin_inset Formula $\left(i-1\right)\times\left(i-1\right)$
+\end_inset
+
+ block.
+ 
+\begin_inset Formula $R^{i-1}$
+\end_inset
+
+ should look like
+\begin_inset Formula 
+\[
+R^{i-1}=\left[\begin{array}{cccc}
+R_{\left(i-1\right)\times\left(i-1\right)}^{i-1} & * & \dots & *\\
+ & R_{i,i}^{i-1} & \dots & *\\
+ & R_{i+1,i}^{i-1} & \dots & *\\
+ &  & \dots & \dots\\
+ &  &  & *
+\end{array}\right].
+\]
+
+\end_inset
+
+We seek for a unitary matrix, in the form of
+\begin_inset Formula 
+\[
+S=\left[\begin{array}{cccc}
+I_{\left(i-1\right)\times\left(i-1\right)}\\
+ & \cos\theta & -\sin\theta\\
+ & \sin\theta & \cos\theta\\
+ &  &  & I_{\left(n-i-1\right)\times\left(n-i-1\right)}
+\end{array}\right]
+\]
+
+\end_inset
+
+s.t.
+ the product 
+\begin_inset Formula $SR^{i-1}$
+\end_inset
+
+ has a vanishing entry at 
+\begin_inset Formula $i+1,i$
+\end_inset
+
+.
+ A direct calculation yields
+\begin_inset Formula 
+\[
+R_{i,i}^{i-1}\sin\theta+R_{i+1,i}^{i-1}\cos\theta=0\Longrightarrow\sin\theta=-\frac{R_{i+1,i}^{i-1}}{\sqrt{\left(R_{i+1,i}^{i-1}\right)^{2}+\left(R_{i+1,i}^{i-1}\right)^{2}}},\cos\theta=\frac{R_{i,i}^{i-1}}{\sqrt{\left(R_{i+1,i}^{i-1}\right)^{2}+\left(R_{i+1,i}^{i-1}\right)^{2}}}
+\]
+
+\end_inset
+
+(no need to solve for 
+\begin_inset Formula $\theta$
+\end_inset
+
+).
+ Then the updated 
+\begin_inset Formula $Q^{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $R^{i}$
+\end_inset
+
+ reads 
+\begin_inset Formula $Q^{i}=Q^{i-1}S^{*}$
+\end_inset
+
+ and 
+\begin_inset Formula $R^{i}=SR^{i-1}.$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+In fact, the aforementioned formula can be simplified since 
+\begin_inset Formula $Q^{i}$
+\end_inset
+
+ also enjoys a Hessenburg structure.
+ An improved version with cost estimate is listed as follows:
+\end_layout
+
+\begin_layout Enumerate
+start with 
+\begin_inset Formula $q_{i}=e_{i}$
+\end_inset
+
+, the standard orthonormal basis and 
+\begin_inset Formula $r_{j}^{T}$
+\end_inset
+
+ the 
+\begin_inset Formula $j$
+\end_inset
+
+-th row of 
+\begin_inset Formula $\widetilde{H_{n}}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+for each 
+\begin_inset Formula $1\le i\le n$
+\end_inset
+
+, let 
+\begin_inset Formula 
+\[
+s^{i}:=-\frac{\left(r_{i+1}\right)_{i}}{\sqrt{\left(r_{i+1}\right)_{i}^{2}+\left(r_{i}\right)_{i}^{2}}},c^{i}:=\frac{\left(r_{i}\right)_{i}}{\sqrt{\left(r_{i+1}\right)_{i}^{2}+\left(r_{i}\right)_{i}^{2}}}.
+\]
+
+\end_inset
+
+We update 
+\begin_inset Formula $q_{i}$
+\end_inset
+
+ and 
+\begin_inset Formula $r_{j}$
+\end_inset
+
+ as:
+\begin_inset Formula 
+\[
+\begin{array}{c}
+q_{i}\\
+q_{i+1}
+\end{array}\leftarrow\begin{array}{c}
+c^{i}q_{i}-s^{i}q_{i+1}\\
+s^{i}q_{i}+c^{i}q_{i+1}
+\end{array},\begin{array}{c}
+r_{i}\\
+r_{i+1}
+\end{array}\leftarrow\begin{array}{c}
+c^{i}r_{i}-s^{i}r_{i+1}\\
+s^{i}r_{i}+c^{i}r_{i+1}
+\end{array}.
+\]
+
+\end_inset
+
+This step involves 
+\begin_inset Formula $2\left(i+1\right)+2\left(n+1-i\right)+2\left(n-i\right)=4n-2i$
+\end_inset
+
+ flops.
+\end_layout
+
+\begin_layout Enumerate
+At the end of the iteration, 
+\begin_inset Formula $Q_{n}:=\left[q_{1},\dots,q_{n}\right],R_{n}:=\left[r_{1}^{T},\dots,r_{n}^{T}\right]^{T}$
+\end_inset
+
+ is the desired factorization which uses 
+\begin_inset Formula $\sum_{i=1}^{n}4n-2i=3n^{2}-n$
+\end_inset
+
+ flops.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+We assume that the QR factorization of 
+\begin_inset Formula $\widetilde{H_{n}}$
+\end_inset
+
+ has been solved and the 
+\begin_inset Formula $\left(s^{i},c^{i}\right)$
+\end_inset
+
+ pairs are also saved along the way.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The first thing we need to do is to re-apply the Givens transforms on the
+ 
+\begin_inset Formula $\left(n+1\right)$
+\end_inset
+
+-th column of 
+\begin_inset Formula $\widetilde{H_{n+1}}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $l^{0}$
+\end_inset
+
+ denote 
+\begin_inset Formula $\left(h_{1,n+1},\dots,h_{n+2,n+1}\right)^{T}$
+\end_inset
+
+, i.e.
+ the last column of 
+\begin_inset Formula $\widetilde{H_{n+1}}$
+\end_inset
+
+.
+ Then for 
+\begin_inset Formula $1\le j\le n$
+\end_inset
+
+, only two entries of 
+\begin_inset Formula $l^{j-1}$
+\end_inset
+
+ are updated
+\begin_inset Formula 
+\begin{align*}
+\left(l^{j}\right)_{j} & =c^{j}\left(l^{j-1}\right)_{j}-s^{j}\left(l^{j-1}\right)_{j+1},\\
+\left(l^{j}\right)_{j+1} & =s^{j}\left(l^{j-1}\right)_{j}+c^{j}\left(l^{j-1}\right)_{j+1}
+\end{align*}
+
+\end_inset
+
+while the remaining entries are the same for 
+\begin_inset Formula $l^{j-1}$
+\end_inset
+
+ and 
+\begin_inset Formula $l^{j}$
+\end_inset
+
+.
+ At the end of this step, the first 
+\begin_inset Formula $\left(n+1\right)$
+\end_inset
+
+ entries have been modified and 
+\begin_inset Formula $6n$
+\end_inset
+
+ flops are involved.
+ 
+\end_layout
+
+\begin_layout Enumerate
+The second step is to perform a new Givens transform involving 
+\begin_inset Formula $\left(l^{n}\right)_{n+1}$
+\end_inset
+
+ and 
+\begin_inset Formula $\left(l^{n}\right)_{n+2}$
+\end_inset
+
+.
+ Let
+\begin_inset Formula 
+\[
+s^{n+1}:=-\frac{\left(l^{n}\right)_{n+2}}{\sqrt{\left(l^{n}\right)_{n+2}^{2}+\left(l^{n}\right)_{n+1}^{2}}},c^{n+1}:=\frac{\left(l^{n}\right)_{n+1}}{\sqrt{\left(l^{n}\right)_{n+2}^{2}+\left(l^{n}\right)_{n+1}^{2}}}
+\]
+
+\end_inset
+
+and it follows that
+\begin_inset Formula 
+\[
+\begin{array}{c}
+q_{n+1}\\
+q_{n+2}
+\end{array}\leftarrow\begin{array}{c}
+c^{n+1}q_{n+1}-s^{n+1}e_{i+2}\\
+s^{n+1}q_{n+1}+c^{n+1}e_{n+2}
+\end{array}
+\]
+
+\end_inset
+
+and the appended last column of 
+\begin_inset Formula $R_{n+1}$
+\end_inset
+
+ reads 
+\begin_inset Formula $\left(\left(l^{n}\right)_{1},\dots,\left(l^{n}\right)_{n},\sqrt{\left(l^{n}\right)_{n+1}^{2}+\left(l^{n}\right)_{n+2}^{2}}\right)^{T}$
+\end_inset
+
+.
+ This involves another 
+\begin_inset Formula $8+2\left(n+2\right)=2n+12$
+\end_inset
+
+ flops.
+\end_layout
+
+\begin_layout Enumerate
+The last step is to solve 
+\begin_inset Formula $y_{n+1}$
+\end_inset
+
+.
+ Notice that 
+\begin_inset Formula 
+\[
+\left(\begin{array}{cc}
+R_{n} & *\\
+ & *
+\end{array}\right)y_{n+1}=R_{n+1}y_{n+1}=\norm bQ_{n+1}^{*}e_{1}=\left(\begin{array}{c}
+\norm bQ_{n}^{*}e_{1}\\
+\norm bq_{n+1}^{*}e_{1}
+\end{array}\right).
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To conclude, this incremental approach involves 
+\begin_inset Formula $8n+12=\cO\left(n\right)$
+\end_inset
+
+ flops at each step.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+(Exercise 35.6 from Trefethen & Bau) For larger values of 
+\begin_inset Formula $n$
+\end_inset
+
+, the cost of GMRES in operations and storage may be prohibitive.
+ In such circumstances a method called 
+\begin_inset Formula $k$
+\end_inset
+
+-step restarted GMRES or GMRES(k) is often employed, in which, after 
+\begin_inset Formula $k$
+\end_inset
+
+ steps, the GMRES iteration is started anew with the current vector 
+\begin_inset Formula $x_{k}$
+\end_inset
+
+ as an initial guess.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Compare the asymptotic operation counts and storage requirements of GMRES
+ and GMRES(k), for fixed 
+\begin_inset Formula $k$
+\end_inset
+
+ and increasing 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Describe an example in which GMRES(k) can be expected to converge in nearly
+ as few iterations as GMRES (hence much faster in operation count).
+\end_layout
+
+\begin_layout Enumerate
+Describe another example in which GMRES(k) can be expected to fail to converge,
+ whereas GMRES succeeds.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $A$
+\end_inset
+
+ is of size 
+\begin_inset Formula $n\times n$
+\end_inset
+
+, each Arnoldi step takes 
+\begin_inset Formula $\cO\left(n^{2}\right)$
+\end_inset
+
+ flops, followed by an incremental QR factorization and least square problem
+ with 
+\begin_inset Formula $\cO\left(n\right)$
+\end_inset
+
+ slops.
+ Thus, for GMRES, it requires 
+\begin_inset Formula $\cO\left(n^{3}\right)$
+\end_inset
+
+ in time and 
+\begin_inset Formula $\cO\left(n^{2}\right)$
+\end_inset
+
+ in space (to store 
+\begin_inset Formula $q_{1},\dots q_{n}$
+\end_inset
+
+).
+ For GMRES(k), it also requires 
+\begin_inset Formula $\cO\left(n^{3}\right)$
+\end_inset
+
+ in time but only 
+\begin_inset Formula $\cO\left(kn\right)$
+\end_inset
+
+ in space.
+\end_layout
+
+\begin_layout Enumerate
+If 
+\begin_inset Formula $A$
+\end_inset
+
+ has no more than 
+\begin_inset Formula $k$
+\end_inset
+
+ distinct eigenvalues, then both GMRES and GMRES(k) will converge in at
+ most 
+\begin_inset Formula $k$
+\end_inset
+
+ steps.
+\end_layout
+
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $A$
+\end_inset
+
+ be the shifting matrix
+\begin_inset Formula 
+\[
+A:=\left(\begin{array}{cccc}
+ & 1\\
+ &  & \dots\\
+ &  &  & 1\\
+1
+\end{array}\right)
+\]
+
+\end_inset
+
+and 
+\begin_inset Formula $b:=\left(1,0,\dots,0\right)^{T}$
+\end_inset
+
+.
+ Then, for any 
+\begin_inset Formula $k>1$
+\end_inset
+
+, the minimization of 
+\begin_inset Formula $\norm{\varphi\left(A\right)b}$
+\end_inset
+
+ over polynomials 
+\begin_inset Formula $\deg\varphi=k$
+\end_inset
+
+ with 
+\begin_inset Formula $\varphi\left(0\right)=1$
+\end_inset
+
+ can be computed in the following way: let 
+\begin_inset Formula $\varphi\left(x\right)=c_{k}x^{k}+c_{k-1}x^{k-1}+\cdots+1$
+\end_inset
+
+, then
+\begin_inset Formula 
+\[
+\norm{\varphi\left(A\right)b}=\norm{\left(1,0,\dots,0,c_{k},c_{k-1},\dots,c_{1}\right)^{T}}=\sqrt{1+\sum_{j=1}^{k}c_{j}^{2}}
+\]
+
+\end_inset
+
+for 
+\begin_inset Formula $k<n$
+\end_inset
+
+, thus the minimizer is just 
+\begin_inset Formula $\varphi=1$
+\end_inset
+
+ and 
+\begin_inset Formula $x_{k}=b$
+\end_inset
+
+.
+ Thus, GMRES(k) is just doing nothing even considering the restarts; on
+ the other hand, when 
+\begin_inset Formula $k$
+\end_inset
+
+ hits 
+\begin_inset Formula $n$
+\end_inset
+
+ , GMRES converges to the correct solution.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+(Exercise 38.2 from Trefethen & Bau) Supposem A is a real symmetric 
+\begin_inset Formula $805\times805$
+\end_inset
+
+ matrix with eigenvalues 
+\begin_inset Formula $1.00,1.01,1.02,\dots,8.98,8.99,9.00$
+\end_inset
+
+ and also 
+\begin_inset Formula $10,12,16,24$
+\end_inset
+
+.
+ How many steps of the conjugate gradient iteration must you take to be
+ sure of reducing the initial error 
+\begin_inset Formula $\norm{e_{0}}_{A}$
+\end_inset
+
+ by a factor of 
+\begin_inset Formula $10^{6}$
+\end_inset
+
+?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Standard
+By the error estimate
+\begin_inset Formula 
+\[
+\frac{\norm{e_{n}}_{A}}{\norm{e_{0}}_{A}}\le2\left(\frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1}\right)^{n}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\kappa=24$
+\end_inset
+
+ is the condition number of 
+\begin_inset Formula $A$
+\end_inset
+
+, thus 
+\begin_inset Formula $n$
+\end_inset
+
+ has to be as large as
+\begin_inset Formula 
+\[
+n\ge\left\lceil \log_{\frac{\sqrt{24}-1}{\sqrt{24}+1}}5\times10^{-7}\right\rceil =36.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+(Exercise 38.4 from Trefethen & Bau - only parts (a) and (c)) Suppose 
+\begin_inset Formula $A$
+\end_inset
+
+ is a dense symmetric positive definite 
+\begin_inset Formula $1000\times1000$
+\end_inset
+
+ matrix with 
+\begin_inset Formula $\kappa\left(A\right)=100$
+\end_inset
+
+.
+ Estimate roughly how many flops are required to solve 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+ to ten-digit accuracy by (a) Cholesky factorization, (b) Richardson iteration
+ with the optimal parameter a (Exercise 35.3), and (c) CG.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Enumerate
+Cholesky factorization requires roughly 
+\begin_inset Formula $\frac{1}{3}1000^{3}\approx3.33\times10^{8}$
+\end_inset
+
+ flops.
+\end_layout
+
+\begin_layout Enumerate
+(skipped)
+\end_layout
+
+\begin_layout Enumerate
+We need 
+\begin_inset Formula 
+\[
+\frac{\norm{e_{n}}_{A}}{\norm{e_{0}}_{A}}\le2\left(\frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1}\right)^{n}
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $\kappa=100$
+\end_inset
+
+, thus 
+\begin_inset Formula $\frac{\sqrt{\kappa}-1}{\sqrt{\kappa}+1}=\frac{9}{11}$
+\end_inset
+
+ and 
+\begin_inset Formula $n\ge\left\lceil \log_{\frac{9}{11}}1\times10^{-10}\right\rceil =127$
+\end_inset
+
+.
+ Each step of CG takes 
+\begin_inset Formula $1000\times12+1000^{2}\times2=2\times10^{6}$
+\end_inset
+
+, so in total it requires 
+\begin_inset Formula $2.54\times10^{8}$
+\end_inset
+
+ flops.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+(Exercise 38.5 from Trefethen & Bau) We have described CG as an iterative
+ minimization of the function 
+\begin_inset Formula $\varphi\left(x\right)$
+\end_inset
+
+ of (38.7).
+ Another way to minimize the same function - far slower, in general - is
+ by the method of 
+\shape italic
+steepest descent
+\shape default
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Derive the formula 
+\begin_inset Formula $\nabla\varphi\left(x\right)=-r$
+\end_inset
+
+ for the gradient of 
+\begin_inset Formula $\varphi\left(x\right)$
+\end_inset
+
+.
+ Thus the steepest descent iteration corresponds to the choice 
+\begin_inset Formula $p_{n}=r_{n}$
+\end_inset
+
+ instead of 
+\begin_inset Formula $p_{n}=r_{n}+\beta_{n}p_{n-1}$
+\end_inset
+
+ in Algorithm 38.1.
+\end_layout
+
+\begin_layout Enumerate
+Determine the formula for the optimal step length 
+\begin_inset Formula $\alpha_{n}$
+\end_inset
+
+ of the steepest descent iteration.
+\end_layout
+
+\begin_layout Enumerate
+Write down the full steepest descent iteration.
+ There are three operations inside the main loop.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Enumerate
+Since 
+\begin_inset Formula $\varphi$
+\end_inset
+
+ is in a quadratic form of 
+\begin_inset Formula $\frac{1}{2}x^{T}Ax-b^{T}x$
+\end_inset
+
+, the gradient reads 
+\begin_inset Formula $Ax-b$
+\end_inset
+
+, thus the search direction is exactly the opposite gradient direction 
+\begin_inset Formula $-\left(Ax_{n}-b\right)=b-Ax_{n}=r_{n}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Under a step length 
+\begin_inset Formula $\alpha$
+\end_inset
+
+, the decrease in the function value reads
+\begin_inset Formula 
+\begin{equation}
+\varphi\left(x_{n}+\alpha p_{n}\right)-\varphi\left(x_{n}\right)=\alpha p_{n}^{T}Ax_{n}+\frac{1}{2}\alpha^{2}p_{n}^{T}Ap_{n}-\alpha p_{n}^{T}b_{n}.\label{eq:p7-b-diff in varphi}
+\end{equation}
+
+\end_inset
+
+The minimizer to Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p7-b-diff in varphi"
+
+\end_inset
+
+ reads
+\begin_inset Formula 
+\[
+\alpha_{n+1}=\frac{p_{n}^{T}b_{n}-p_{n}^{T}Ax_{n}}{p_{n}^{T}Ap_{n}}=\frac{p_{n}^{T}r_{n}}{p_{n}^{T}Ap_{n}}=\frac{r_{n}^{T}r_{n}}{r_{n}^{T}Ar_{n}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The steepest descent iteration is described as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Set 
+\begin_inset Formula $x_{0}=0,r_{0}=b$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Enumerate
+For 
+\begin_inset Formula $n=1,2,3...$
+\end_inset
+
+:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Let step size 
+\begin_inset Formula $\alpha_{n}=\frac{r_{n-1}^{T}r_{n-1}}{r_{n-1}^{T}Ar_{n-1}}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Enumerate
+Update 
+\begin_inset Formula $x_{n}=x_{n-1}+\alpha_{n}r_{n-1}$
+\end_inset
+
+;
+\end_layout
+
+\begin_layout Enumerate
+Update 
+\begin_inset Formula $r_{n}=r_{n-1}-\alpha_{n}Ar_{n-1}$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\end_deeper
+\end_deeper
+\end_body
+\end_document
