@@ -1,0 +1,1215 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{matlab-prettifier}
+\usepackage{lstautogobble}  % Fix relative indenting
+\usepackage{color}          % Code coloring
+% \usepackage{zi4}            % Nice font
+
+\definecolor{bluekeywords}{rgb}{0.13, 0.13, 1}
+\definecolor{greencomments}{rgb}{0, 0.5, 0}
+\definecolor{redstrings}{rgb}{0.9, 0, 0}
+\definecolor{graynumbers}{rgb}{0.5, 0.5, 0.5}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backcolour}{rgb}{1, 1, 1}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+soul
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "~/.lyx/templates/math_shorthand.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Homework 4
+\end_layout
+
+\begin_layout Author
+Ziheng Chen (zc5282)
+\end_layout
+
+\begin_layout Enumerate
+The file 
+\family typewriter
+hw04p01.m
+\family default
+ provides Matlab code for sparse LU factorization of a matrix arising from
+ the standard five-point finite difference discretization of the Laplace
+ operator on an 
+\begin_inset Formula $\left(n+2\right)\times\left(n+2\right)$
+\end_inset
+
+ grid.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+In a log-log diagram, plot execution time 
+\begin_inset Formula $T_{N}$
+\end_inset
+
+ versus problem size 
+\begin_inset Formula $N=n^{2}$
+\end_inset
+
+ for the two orderings.
+\end_layout
+
+\begin_layout Enumerate
+Repeat (a), but now plot memory requirement versus 
+\begin_inset Formula $N$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Form a matrix corresponding to a higher order discretization of the Laplace
+ equation.
+ For instance, there is a nine-point stencil formed from the tensor product
+ of the 1D stencil 
+\begin_inset Formula 
+\[
+\frac{1}{h^{2}}\left[-\frac{1}{12},\frac{4}{3},-\frac{5}{2},\frac{4}{3},-\frac{1}{12}\right].
+\]
+
+\end_inset
+
+Repeat (a) and (b) for this matrix.
+ (Note, there is some subtlety about the edge layer for the higher order
+ stencil.
+ Please ignore this.
+ For instance, you could form the matrix for the 
+\begin_inset Formula $\left(n+4\right)\times\left(n+4\right)$
+\end_inset
+
+ grid, and then just consider the 
+\begin_inset Formula $n^{2}\times n^{2}$
+\end_inset
+
+ matrix corresponding to the central square of nodes.)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Standard
+We combine the tests for five-point and nine-point stencils together.
+\end_layout
+
+\begin_layout Enumerate
+The execution time is shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p1-memory"
+
+\end_inset
+
+ (left).
+ As expected, the columnwise ordering exhibits a roughly second-order scaling
+ (a bit less possibly due to vectorization) and the dissect ordering is
+ of 1.5-order scaling.
+\end_layout
+
+\begin_layout Enumerate
+The memory requirement involves the (non-zero) element count of 
+\begin_inset Formula $L$
+\end_inset
+
+ and 
+\begin_inset Formula $U$
+\end_inset
+
+ as well as the permutation transform 
+\begin_inset Formula $J$
+\end_inset
+
+ (for dissect ordering), as shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p1-memory"
+
+\end_inset
+
+ (right).
+ The column wise ordering requires a 
+\begin_inset Formula $\cO\left(N^{3/2}\right)$
+\end_inset
+
+ amount of space and the dissect ordering requires ?
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p1.epsc
+	width 70line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Time and memory expenses scale with problem size.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p1-memory"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "hw04p01.m"
+lstparams "breaklines=true,captionpos=b,frame=tb,language=Matlab,lastline=97,backgroundcolor={\\color{backcolour}},commentstyle={\\color{codegreen}},keywordstyle={\\color{magenta}},numberstyle={\\tiny\\color{codegray}},stringstyle={\\color{codepurple}},basicstyle={\\ttfamily\\footnotesize},breakatwhitespace=false,breaklines=true,keepspaces=true,numbers=left,numbersep=5pt,showspaces=false,showstringspaces=false,showtabs=false,tabsize=2,caption={Time and memory measurement for different ordering in LU decomposition.}"
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Let 
+\begin_inset Formula $A\in\bC^{n\times n}$
+\end_inset
+
+ be strictly diagonally dominant, let 
+\begin_inset Formula $f\in\bC^{n\times1}$
+\end_inset
+
+ be a vector, and consider the linear system 
+\begin_inset Formula $Au=f$
+\end_inset
+
+.
+ Prove that the Jacobi iteration will converge towards the exact solution
+ for every starting vector.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Standard
+According to Jacobi iteration, we decompose 
+\begin_inset Formula $A$
+\end_inset
+
+ as 
+\begin_inset Formula $L+D+U$
+\end_inset
+
+ where 
+\begin_inset Formula $L$
+\end_inset
+
+ (/
+\begin_inset Formula $U$
+\end_inset
+
+) is a lower(/upper)-triangle matrix with diagonal entries filled with 0
+ and 
+\begin_inset Formula $D$
+\end_inset
+
+ is a diagonal matrix.
+ Let 
+\begin_inset Formula $M=D$
+\end_inset
+
+ and 
+\begin_inset Formula $K=-L-U$
+\end_inset
+
+, then the iteration scheme reads
+\begin_inset Formula 
+\[
+x_{n+1}=\left(M^{-1}K\right)x_{n}+M^{-1}f.
+\]
+
+\end_inset
+
+In fact, it suffices to prove that 
+\begin_inset Formula $R:=M^{-1}K$
+\end_inset
+
+ has a smaller than 1 vector-induced norm.
+ Let's consider the vector 
+\begin_inset Formula $\infty$
+\end_inset
+
+-norm and it's induced matrix norm.
+\end_layout
+
+\begin_layout Lemma
+The 
+\begin_inset Formula $\infty$
+\end_inset
+
+-matrix norm induced by 
+\begin_inset Formula $\norm x_{\infty}:=\max_{i}\abs{x_{i}}$
+\end_inset
+
+ satisfies
+\begin_inset Formula 
+\[
+\norm B_{\infty}:=\sup_{\norm x_{\infty}=1}\norm{Bx}_{\infty}=\max_{i}\sum_{j=1}^{n}\abs{B_{ij}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Proof
+On one side, for any fixed index 
+\begin_inset Formula $i$
+\end_inset
+
+, pick 
+\begin_inset Formula $y_{j}^{\left(i\right)}=\sgn\left(B_{ij}\right)$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\[
+\norm{By^{\left(i\right)}}_{\infty}=\max_{i'}\abs{\sum_{j=1}^{n}B_{i'j}y_{j}^{\left(i\right)}}\ge\abs{\sum_{j=1}^{n}B_{ij}y_{j}^{\left(i\right)}}=\abs{\sum_{j=1}^{n}\abs{B_{ij}}}=\sum_{j=1}^{n}\abs{B_{ij}},
+\]
+
+\end_inset
+
+leading to
+\begin_inset Formula 
+\[
+\norm B_{\infty}=\sup_{\norm x_{\infty}=1}\norm{Bx}_{\infty}\ge\max_{i}\norm{By^{\left(i\right)}}_{\infty}\ge\max_{i}\sum_{j=1}^{n}\abs{B_{ij}}.
+\]
+
+\end_inset
+
+On the flip side, for any given 
+\begin_inset Formula $\norm x_{\infty}=1$
+\end_inset
+
+, 
+\begin_inset Formula $\abs{x_{j}}\le1$
+\end_inset
+
+, thus
+\begin_inset Formula 
+\[
+\norm{Bx}_{\infty}=\max_{i}\abs{\left(Bx\right)_{i}}=\max_{i}\abs{\sum_{j=1}^{n}B_{ij}x_{j}}\le\max_{i}\sum_{j=1}^{n}\abs{B_{ij}}\abs{x_{j}}\le\max_{i}\sum_{j=1}^{n}\abs{B_{ij}}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+With the lemma established, we move on to compute 
+\begin_inset Formula $\norm R_{\infty}$
+\end_inset
+
+.
+ Since 
+\begin_inset Formula $R=M^{-1}K=-D^{-1}\left(L+U\right)$
+\end_inset
+
+, its entry reads
+\begin_inset Formula 
+\[
+R_{ij}=\begin{cases}
+-a_{ii}^{-1}a_{ij} & i\neq j\\
+0 & i=j
+\end{cases},
+\]
+
+\end_inset
+
+leading to
+\begin_inset Formula 
+\[
+\norm R_{\infty}=\max_{i}\sum_{j=1}^{n}\abs{R_{ij}}=\max_{i}\sum_{j\neq i}\abs{a_{ii}^{-1}a_{ij}}=\max_{i}\frac{\sum_{j\neq i}\abs{a_{ij}}}{\abs{a_{ii}}}.
+\]
+
+\end_inset
+
+Since 
+\begin_inset Formula $A$
+\end_inset
+
+ is diagonal dominant, it follows that 
+\begin_inset Formula $\sum_{j\neq i}\abs{a_{ij}}<\abs{a_{ii}}$
+\end_inset
+
+ and 
+\begin_inset Formula $\norm R_{\infty}<1$
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In this problem, you will numerically investigate the convergence rate of
+ the Jacobi and Gauss-Seidel iterations for a linear system arising from
+ the discretization of our standard model problem: The Poisson equation
+ on a square with zero Dirichlet data, discretized via a standard five-point
+ stencil on a uniform grid.
+\begin_inset Newline newline
+\end_inset
+
+As a starting point, you are welcome to use the script 
+\family typewriter
+hw04p03.m
+\family default
+, provided on the webpage.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Try to experimentally determine the worst case rate of convergence as a
+ function of 
+\begin_inset Formula $h$
+\end_inset
+
+ for the Jacobi method.
+ For instance, your answer may be 
+\begin_inset Formula $\norm{e_{n}}\sim\beta^{n}$
+\end_inset
+
+ where 
+\begin_inset Formula $\beta=1-0.3h^{4}$
+\end_inset
+
+.
+ Attach a plot.
+ 
+\end_layout
+
+\begin_layout Enumerate
+Repeat (a) for Gauss-Seidel with basic column-wise ordering.
+\end_layout
+
+\begin_layout Enumerate
+Repeat (a) for Gauss-Seidel with red-black ordering.
+\end_layout
+
+\begin_layout Enumerate
+Compare you answers in (a), (b), and (c) with the upper bound 
+\begin_inset Formula $\norm{e_{n}}\le\beta^{n}\norm{e_{0}}$
+\end_inset
+
+ where 
+\begin_inset Formula $\beta=\norm R$
+\end_inset
+
+.
+ Try a few different matrix norms and see if one performs better than the
+ others.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+[Optional:]
+\shape default
+ Consider some other discretization of the Poisson equation that is of interest
+ to you.
+ (For instance, finite elements, global spectral, higher order finite difference
+, etc.) Describe which discretization you consider, and see if you can develop
+ an estimate of the convergence rate of Jacobi and Gauss-Seidel for your
+ system.
+ (Observe that the “red-black” ordering idea may or may not be applicable
+ to the problem that you choose!)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Enumerate
+We set up an illustration on forward errors 
+\begin_inset Formula $\norm{Ax-f}$
+\end_inset
+
+ and backward errors 
+\begin_inset Formula $\norm{x-x^{*}}$
+\end_inset
+
+, as shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p3-a-convergence"
+
+\end_inset
+
+.
+ The error usually decreases fast due to components with high frequencies,
+ then the error converges at the rate of the spectral redius.
+ The rate gets close to 1 as 
+\begin_inset Formula $n$
+\end_inset
+
+, the discretization resolution, increases and the gap between foward and
+ backward also deteriotes, due to the increasing condition number of the
+ Laplacian operator.
+ Since the error decreases in a linear manner, we conjecture that 
+\begin_inset Formula $\norm{e_{n}}\sim\beta^{n}$
+\end_inset
+
+ where 
+\begin_inset Formula $\beta$
+\end_inset
+
+ can be solved as the slope of a linear regression of 
+\begin_inset Formula $\log\left(\norm{e_{n}}\right)$
+\end_inset
+
+ on 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+We wish to measure how 
+\begin_inset Formula $\beta$
+\end_inset
+
+ gets close to 1 as 
+\begin_inset Formula $h\to0$
+\end_inset
+
+ via 
+\begin_inset Formula $\beta=1-\gamma h^{m}$
+\end_inset
+
+.
+ For this purpose, we perform a linear regression of 
+\begin_inset Formula $\log\left(1-\beta\right)$
+\end_inset
+
+ on 
+\begin_inset Formula $\log h$
+\end_inset
+
+.
+ As shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p3-a-beta-jacobi"
+
+\end_inset
+
+, we conclude that for Jacobi iteration (applied on this system), we have
+\begin_inset Formula 
+\[
+\beta^{\text{jacobi}}=1-3.48h^{1.92}\approx1-\pi h^{2}.
+\]
+
+\end_inset
+
+This asymptotic convergence rate is tightly bounded by the spectral radius
+ of the iteration matrix 
+\begin_inset Formula $R$
+\end_inset
+
+, which coincides with the spectral norm since 
+\begin_inset Formula $R$
+\end_inset
+
+ is symmetric.
+ In contrast, many other matrices norms have been tried, but non of them
+ yields useful bounds.
+ In fact, one can show that the 
+\begin_inset Formula $L^{1}/L^{\infty}$
+\end_inset
+
+ vector-induced norm of 
+\begin_inset Formula $R$
+\end_inset
+
+ is exactly 1, independent of the choice of 
+\begin_inset Formula $n$
+\end_inset
+
+.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p3-convergence.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Forward (in red, the lower one) and backward (in blue, the upper one) errors
+ diminish with iterations.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p3-a-convergence"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p3-five_point_stencil-jacobi_pc-normal_ordering.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Gap between 
+\begin_inset Formula $\beta$
+\end_inset
+
+ and 1 narrows as 
+\begin_inset Formula $h\to0$
+\end_inset
+
+ when using Jacobi iteration.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p3-a-beta-jacobi"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+We apply the same measurements on the Gauss-Seidel iterations, combined
+ with different orderings.
+ It seems that the asymptotic 
+\begin_inset Formula $\beta$
+\end_inset
+
+ behavor is characterized by
+\begin_inset Formula 
+\[
+\beta^{\text{gauss-seidel}}\approx1-2\pi h^{2}.
+\]
+
+\end_inset
+
+In fact, we can show that the ordering does not interfere with the convergence
+ rate, i.e.
+ the spectral radius of 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ In general, ordering is a permutation of the computation nodes and it can
+ be represented by a perumutation matrix 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ Then, if we wish to permute the nodes as well as the iteration equations
+ by 
+\begin_inset Formula $P$
+\end_inset
+
+, let 
+\begin_inset Formula $\widetilde{x}^{\left(k\right)}:=Px^{\left(k\right)}$
+\end_inset
+
+ denote the permuted nodes.
+ Under the new ordering, recall that the 
+\begin_inset Quotes eld
+\end_inset
+
+old
+\begin_inset Quotes erd
+\end_inset
+
+ update scheme reads 
+\begin_inset Formula $x^{\left(k+1\right)}=Rx^{\left(k\right)}+c$
+\end_inset
+
+, for the new one we have
+\begin_inset Formula 
+\[
+\widetilde{x}^{\left(k+1\right)}=Px^{\left(k+1\right)}=\left(PRP^{-1}\right)\left[Px^{\left(k\right)}\right]+Pc=\left(PRP^{-1}\right)\widetilde{x}^{\left(k\right)}+Pc.
+\]
+
+\end_inset
+
+Thus the new iteration matrix reads 
+\begin_inset Formula $\widetilde{R}=PRP^{-1}$
+\end_inset
+
+ and it shares the same spectral radius as 
+\begin_inset Formula $R$
+\end_inset
+
+.
+ Nevertheless, we notice that 
+\begin_inset Formula $\norm R_{1}=1$
+\end_inset
+
+ for column-wise ordering while 
+\begin_inset Formula $\norm{\widetilde{R}}_{1}=2$
+\end_inset
+
+ for red-black ordering (which is of course not helpful).
+ The spectral norm works under column-wise ordering but does not work under
+ red-black ordering since the estimate is larger than 1.
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p3-five_point_stencil-gauss_seidel_pc-normal_ordering.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Using column-wise ordering with Gauss-Seidel iteration.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p3-b-gs-normal"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p3-five_point_stencil-gauss_seidel_pc-red_black_ordering.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Using red-black ordering with Gauss-Seidel iteration (the spectral norm
+ item is invalid under this setting).
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p3-b-gs-redblack"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+See b)
+\end_layout
+
+\begin_layout Enumerate
+See a) and b)
+\end_layout
+
+\begin_layout Enumerate
+We consider the following few methods:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Finite difference discretization with a higher-order scheme as described
+ in Problem 1.
+ The Jacobi iteration fails to converge while the Gauss-Seidel one manages
+ to work, as shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p3-e-high-fdm-jacobi"
+
+\end_inset
+
+ and 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p3-e-high-fdm-gs"
+
+\end_inset
+
+.
+ The empirical estimate of error reads
+\begin_inset Formula 
+\[
+\norm{e_{n}}\sim\beta^{n},\beta\approx1-5.65h^{1.92}.
+\]
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p3-nine_point_stencil-jacobi_pc-normal_ordering-convergence.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The Jacobi iteration fails to converge.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p3-e-high-fdm-jacobi"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p3-nine_point_stencil-gauss_seidel_pc-normal_ordering.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The Gauss-Seidel iteration.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p3-e-high-fdm-gs"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Finite element method: we use a particular mesh where the domain is first
+ partitioned into squares and each square is diagonally splitted into two
+ triangles.
+ The varaitional form reads
+\begin_inset Formula 
+\[
+\int_{\Omega}\left\langle \nabla u,\nabla v\right\rangle =\int_{\Omega}fv,\forall v\in H^{\text{FEM}}.
+\]
+
+\end_inset
+
+One can verify that only adjacent nodes have a non-zero weight in the stiffness
+ tensor, leading to the same iteration operator derived from FDM.
+ We skip this scenario due to this reason.
+\end_layout
+
+\begin_layout Enumerate
+Another approach is the global spectral method.
+ In fact, the Fourier basis diagonalizes the Laplace operator so a direct,
+ analytic inversion is tractable without using iterative methods.
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Enumerate
+
+\shape italic
+[Question 6.16 from Applied Numerical Linear Algebra by J.W.
+ Demmel.]
+\shape default
+ A Matlab program implementing multigrid to solve the discrete model problem
+ on a square is available at
+\begin_inset Newline newline
+\end_inset
+
+
+\family typewriter
+https://people.eecs.berkeley.edu/~demmel/ma221_Fall09/Matlab/MG_README.html
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+(and also on the class canvas page as 
+\family typewriter
+demmelmultigrid.zip
+\family default
+).
+ Start by running the demonstration (type 
+\family typewriter
+makemgdemo
+\family default
+ and then 
+\family typewriter
+testfmgv
+\family default
+).
+ Then, try running testfmg for different right-hand sides (input array b),
+ different numbers of weighted Jacobi convergence steps before and after
+ each recursive call to the multigrid solver (inputs jac1 and jac2), and
+ different numbers of iterations (input iter).
+ The software will plot the convergence rate (ratio of consecutive residuals);
+ does this depend on the size of b? the frequencies in b? the values of
+ jac1 and jac2? For which values of jac1 and jac2 is the solution most efficient
+?
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Enumerate
+sdfg
+\end_layout
+
+\end_deeper
+\end_body
+\end_document

@@ -1,58 +1,106 @@
-function hw04p01
+clear; %clc
+addpath ../lib
 
-DRIVER1
+%%
+ns = round(10.^(1:0.1:2.6));
 
-return
+times_c = cell(numel(ns), 1);
+memories_c = cell(numel(ns), 1);
+parfor(i = 1:numel(ns), 6)
+    n = ns(i);
+    fprintf('Working on n=%d...\n', n)
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% This function builds the matrix A that results from discretization of the
-% Poisson equation on a square using an (n+2) x (n+2) uniform grid, and the
-% standard five-point finite difference stencil. Zero Dirichlet data is
-% assumed, resulting in an N x N matrix, where N = n^2. 
-% 
-% Once the matrix is formed, LU factorization is performed using first
-% standard column wise ordering, and second the ordering resulting from the
-% Matlab routine "dissect".
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    tics = zeros(2, 2);
+    mems = zeros(2, 2);
 
-function DRIVER1
+    A5 = five_point_stencil(n);
 
-n = 50;
-I = speye(n,n);
-E = sparse(2:n,1:n-1,1,n,n);
-D = E+E'-2*I;
-A = kron(D,I)+kron(I,D);
+    tic
+    [L, U] = lu(A5);
+    tics(1, 1) = toc;
+    mems(1, 1) = nnz(L) + nnz(U);
 
-tic
-[L,U] = lu(A);
-fprintf(1,'Time for LU on original matrix = %0.3f\n',toc)
+    J = dissect(A5);
+    tic
+    [L, U] = lu(A5(J, J));
+    tics(1, 2) = toc;
+    mems(1, 2) = nnz(L) + nnz(U) + numel(J);
 
-figure(1)
-subplot(2,3,1)
-spy(A)
-title('A')
-subplot(2,3,2)
-spy(L)
-title('L')
-subplot(2,3,3)
-spy(U)
-title('U')
+    A9 = nine_point_stencil(n);
 
+    tic
+    [L, U] = lu(A9);
+    tics(2, 1) = toc;
+    mems(2, 1) = nnz(L) + nnz(U);
 
-tic
-J = dissect(A);
-fprintf(1,'Time to determine ND ordering = %0.3f\n',toc)
-tic
-[L,U] = lu(A(J,J));
-fprintf(1,'Time for LU on matrix in ND ordering = %0.3f\n',toc)
+    J = dissect(A9);
+    tic
+    [L, U] = lu(A9(J, J));
+    tics(2, 2) = toc;
+    mems(2, 2) = nnz(L) + nnz(U) + numel(J);
 
-subplot(2,3,4)
-spy(A(J,J))
-subplot(2,3,5)
-spy(L)
-subplot(2,3,6)
-spy(U)
+    times_c{i} = tics;
+    memories_c{i} = mems;
+end
 
-return
+%%
+times = zeros(numel(ns), 2, 2);
+memories = zeros(numel(ns), 2, 2);
+for i = 1:numel(ns)
+    for j = 1:2
+        for l = 1:2
+            times(i, j, l) = times_c{i}(j, l);
+            memories(i, j, l) = memories_c{i}(j, l);
+        end
+    end
+end
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%
+figure(1); clf
+
+s1 = subplot(1, 2, 1); hold(s1, 'on'); grid on
+plot_wrapper(times, 'time (s)', ns, round(numel(ns) / 2)-1)
+
+s2 = subplot(1, 2, 2); hold(s2, 'on'); grid on
+plot_wrapper(memories, 'memory (fl)', ns, round(numel(ns) / 2)-1)
+
+set(gcf, 'Position', [515, 250, 574, 253])
+saveas(gcf, 'p1.epsc')
+
+%%
+function plot_wrapper(arr, label, ns, offset)
+    ns = ns(offset:end);
+    arr = arr(offset:end, :, :);
+    stencils = {{'five point', 'r^'}, {'nine point', 'b+'}};
+    orderings = {{'column', '-'}, {'dissect', '--'}};
+    for j = 1:2
+        for l = 1:2
+            xs = ns.^2;
+            ys = arr(:, j, l);
+            [slope, ~, ~] = slope_helper(xs, ys, xs);
+            plot(xs, ys, [stencils{j}{2}, orderings{l}{2}], ...
+                'DisplayName', sprintf('%s-%s(%.2f)', ...
+                stencils{j}{1}, orderings{l}{1}, slope))
+        end
+    end
+    set(gca, 'XScale', 'log', 'YScale', 'log')
+    xlim([min(ns.^2), max(ns.^2)])
+    xlabel('N=n^2')
+    ylabel(label)
+    legend('Location', 'best')
+end
+
+function A = five_point_stencil(n)
+    I = speye(n,n);
+    E = sparse(2:n,1:n-1,1,n,n);
+    D = E+E'-2*I;
+    A = kron(D,I)+kron(I,D);
+end
+
+function A = nine_point_stencil(n)
+    I = speye(n,n);
+    E = sparse(2:n,1:n-1,1,n,n);
+    F = sparse(3:n,1:n-2,1,n,n);
+    D = -(F+F')/12 + (E+E')*(4/3) - I*(5/2);
+    A = kron(D,I)+kron(I,D);
+end
