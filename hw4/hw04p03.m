@@ -1,4 +1,5 @@
 clear; %clc
+addpath ../lib
 
 niter = 200;
 
@@ -144,30 +145,4 @@ end
 
 function Mo = gauss_seidel_pc(A, o)
     Mo = tril(A(o, o));
-end
-
-function [beta, gamma] = fit_with_detection(xs_, ys_, offset, logx)
-    % This function aims to fit ys = gamma * xs .^ beta (logx=true) or
-    % ys = gamma * beta .^ xs (logx=false) with some outlier detection.
-
-    ys = log(ys_(offset:end));
-    if logx
-        xs = log(xs_(offset:end));
-    else
-        xs = xs_(offset:end);
-    end
-
-    p = polyfit(xs, ys, 1);
-    log_ys_fit = polyval(p, xs);
-    Rsq = 1 - sum((ys - log_ys_fit).^2)/sum((ys - mean(ys)).^2);
-%     fprintf('R^2=%.4f.\n', Rsq)
-    if Rsq < 0.95
-        fprintf('R^2=%.4f is too small!\n', Rsq)
-    end
-    if logx
-        beta = p(1);
-    else
-        beta = exp(p(1));
-    end
-    gamma = exp(p(2));
 end

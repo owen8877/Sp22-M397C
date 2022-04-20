@@ -124,6 +124,25 @@ filename "~/.lyx/templates/math_shorthand.lyx"
 
 \begin_layout Title
 Homework 4
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Code is available at 
+\begin_inset CommandInset href
+LatexCommand href
+name "Github Repo"
+target "https://github.com/owen8877/Sp22-M397C/tree/master/hw4"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Author
@@ -285,17 +304,6 @@ name "fig:p1-memory"
 
 
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset include
-LatexCommand lstinputlisting
-filename "hw04p01.m"
-lstparams "breaklines=true,captionpos=b,frame=tb,language=Matlab,lastline=97,backgroundcolor={\\color{backcolour}},commentstyle={\\color{codegreen}},keywordstyle={\\color{magenta}},numberstyle={\\tiny\\color{codegray}},stringstyle={\\color{codepurple}},basicstyle={\\ttfamily\\footnotesize},breakatwhitespace=false,breaklines=true,keepspaces=true,numbers=left,numbersep=5pt,showspaces=false,showstringspaces=false,showtabs=false,tabsize=2,caption={Time and memory measurement for different ordering in LU decomposition.}"
 
 \end_inset
 
@@ -1206,8 +1214,386 @@ testfmgv
 Solution:
 \end_layout
 
-\begin_layout Enumerate
-sdfg
+\begin_layout Standard
+We follow the example systems given in the demonstration as listed in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p4-systems"
+
+\end_inset
+
+.
+ Those systems vary in shapes and spatial frequencies, but the convergence
+ bahavior of the multigrid method is similar.
+ A typical convergence behavior is plotted in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p4-typical-convergence"
+
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p4-system-1.epsc
+	width 20line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A smooth setup.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p4-system-2.epsc
+	width 20line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A random-field setup.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p4-system-3.epsc
+	width 20line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A hard cut-off setup.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Top row: true solution; bottom row: right hand side source term.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p4-systems"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename p4-convergence-demo.epsc
+	width 40line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p4-typical-convergence"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+After some attempts at trying different sizes and system steups, we come
+ to the conclusion that the convergence rate is insensitive of these factors.
+ However, the rate does depend on the number of iterations applied on each
+ level, specified by jac1 and jac2.
+ To measure the efficiency, recall that the error decreases at a linear
+ rate, i.e.
+\begin_inset Formula 
+\[
+\norm{e_{n}}\sim\beta^{n},
+\]
+
+\end_inset
+
+thus a twice 
+\begin_inset Quotes eld
+\end_inset
+
+efficient
+\begin_inset Quotes erd
+\end_inset
+
+ algorithm has the square of the convergence rate 
+\begin_inset Formula $\beta$
+\end_inset
+
+ of a baseline algorithm, given that the same amount of flops are consumed.
+ In other words, we define the efficiency as 
+\begin_inset Formula 
+\[
+\text{efficiency}:=\frac{\text{flops}}{-\log\beta}.
+\]
+
+\end_inset
+
+Moreover, since it is in general not feasible to count flops in MATLAB,
+ we replace flops by the time elapsed in hope of an accurate approximation.
+ The efficiency ratio is plotted in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p4-efficiency"
+
+\end_inset
+
+.
+ As a rule of thumb, more iterations surely help to improve the efficiency,
+ although the sweet spot is quite hard to determine, and the improvement
+ is weaker if the system has better smoothness.
+ In general, having 3 iterations before and after refinement seems to be
+ a balancing choice.
+ 
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p4-efficiency-k-7-u-1.epsc
+	width 20line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A smooth setup.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p4-efficiency-k-7-u-2.epsc
+	width 20line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A random-field setup.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset space \qquad{}
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p4-efficiency-k-7-u-3.epsc
+	width 20line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A hard cut-off setup.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Efficiency compared across different systems.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p4-efficiency"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_deeper
