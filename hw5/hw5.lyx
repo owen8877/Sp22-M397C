@@ -1,0 +1,2713 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+\usepackage{matlab-prettifier}
+\usepackage{lstautogobble}  % Fix relative indenting
+\usepackage{color}          % Code coloring
+% \usepackage{zi4}            % Nice font
+
+\definecolor{bluekeywords}{rgb}{0.13, 0.13, 1}
+\definecolor{greencomments}{rgb}{0, 0.5, 0}
+\definecolor{redstrings}{rgb}{0.9, 0, 0}
+\definecolor{graynumbers}{rgb}{0.5, 0.5, 0.5}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+%\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\definecolor{backcolour}{rgb}{1, 1, 1}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+soul
+\end_modules
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref true
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\topmargin 2.5cm
+\rightmargin 2.5cm
+\bottommargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "~/.lyx/templates/math_shorthand.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Homework 5
+\end_layout
+
+\begin_layout Author
+Ziheng Chen (zc5282)
+\end_layout
+
+\begin_layout Enumerate
+The objective of this problem is to computationally investigate the error
+ incurred by truncating multipole expansions.
+ Consider the following geometry: Let 
+\begin_inset Formula $\Omega_{\tau}$
+\end_inset
+
+ and 
+\begin_inset Formula $\Omega_{\sigma}$
+\end_inset
+
+ be two well-separated boxes with centers 
+\begin_inset Formula $c_{\tau}$
+\end_inset
+
+ and 
+\begin_inset Formula $c_{\sigma}$
+\end_inset
+
+.
+ Let 
+\begin_inset Formula $y\in\Omega_{\sigma}$
+\end_inset
+
+ be a source point and let 
+\begin_inset Formula $x\in\Omega_{\tau}$
+\end_inset
+
+ be a target point.
+ Consider the error function 
+\begin_inset Formula 
+\[
+e\left(P\right)=\sup\left\{ \abs{\log\abs{x-y}-B_{P}\left(x,c_{\tau}\right)Z_{P}\left(c_{\tau},c_{\sigma}\right)C_{P}\left(c_{\sigma},y\right)}:y\in\Omega_{\sigma},x\in\Omega_{\tau}\right\} 
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $P$
+\end_inset
+
+ is the length of the multipole expansion, and where 
+\begin_inset Formula 
+\begin{align*}
+C_{P}\left(c_{\sigma},y\right) & \in\bC^{P\times1} & \text{maps a source to an outgoing expansion}\\
+Z_{P}\left(c_{\tau},c_{\sigma}\right) & \in\bC^{P\times P} & \text{maps an outgoing expansion to an incoming expansion}\\
+B_{P}\left(x,c_{\tau}\right) & \in\bC^{1\times P} & \text{maps an incoming expansion to a target}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Estimate 
+\begin_inset Formula $e\left(P\right)$
+\end_inset
+
+ experimentally for the geometry:
+\begin_inset Formula 
+\begin{equation}
+\Omega_{\sigma}=\left[-1,1\right]\times\left[-1,1\right],\Omega_{\tau}=\left[3,5\right]\times\left[-1,1\right].\label{eq:p1-domain-separate box}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Fit the function you determined in (a) to a curve 
+\begin_inset Formula $e\left(P\right)\sim c\alpha^{P}$
+\end_inset
+
+.
+ What is 
+\begin_inset Formula $\alpha$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+Is the supremum for a given 
+\begin_inset Formula $P$
+\end_inset
+
+ attained for any specific pair 
+\begin_inset Formula $\left\{ x,y\right\} $
+\end_inset
+
+? If so, find (experimentally) the pair.
+ Does the choice depend on 
+\begin_inset Formula $P$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+Repeat questions (a), (b), (c) for a different geometry of your choice.
+ (Provide a picture.)
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solution:
+\end_layout
+
+\begin_layout Enumerate
+The absolute and relative errors can be numerically computed for the given
+ domain (
+\begin_inset Formula $P=20$
+\end_inset
+
+):
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+absolute error 
+\begin_inset Formula $\norm e_{2}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+relative error 
+\begin_inset Formula $\frac{\norm e_{2}}{\sqrt{\bE\left(\log\abs{x-y}\right)^{2}}}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $\norm e_{\infty}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+target-outgoing-source
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.55231e-09
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.98968e-11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.12356e-09
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+target-ingoing-outgoing-source
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1.58042e-09
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.04382e-11
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+1.16276e-09
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+target-ingoing-source
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3.36980e-10
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6.49010e-12
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2.38557e-10
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+The 
+\begin_inset Formula $\alpha$
+\end_inset
+
+ is found through numerical experiments to be around 0.37667 (see Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p1-error"
+
+\end_inset
+
+).
+\end_layout
+
+\begin_layout Enumerate
+The supremum is attained consistently at a specific pair no matter what
+ the value 
+\begin_inset Formula $P$
+\end_inset
+
+ takes.
+ We randomly sample sources and targets and find the maximum error.
+ this procedure is repeated several times and each pair is connected, as
+ shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p1-error-pos"
+
+\end_inset
+
+.
+ In general, the pairs occur at places that seem to be 
+\begin_inset Quotes eld
+\end_inset
+
+close
+\begin_inset Quotes erd
+\end_inset
+
+ but at the same time 
+\begin_inset Quotes eld
+\end_inset
+
+spiky
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p1-error-separate boxes.epsc
+	width 33line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Separate box domain (Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p1-domain-separate box"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p1-error-separate circles.epsc
+	width 33line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Separate circles domain (Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p1-separate circles"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p1-error-moon.epsc
+	width 33line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Moon domain (Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p1-moon"
+
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Error decreases as 
+\begin_inset Formula $P$
+\end_inset
+
+ gets larger.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p1-error"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p1-demo-separate boxes.epsc
+	width 33line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p1-demo-separate circles.epsc
+	width 33line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p1-demo-moon.epsc
+	width 33line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p1-err-sup-separate boxes.epsc
+	width 33line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Separate box domain
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p1-err-sup-separate circles.epsc
+	width 33line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Separate circles domain
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p1-separate circles"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status collapsed
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p1-err-sup-moon.epsc
+	width 33line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Moon
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p1-moon"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Top row: system setup; bottom row: pairs of source and target that attain
+ maximum error
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p1-error-pos"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+The objective of this exercise is to familiarize yourself with the provided
+ prototype FMM.
+ The questions below refer to the basic FMM provided in the file 
+\family typewriter
+main_fmm.m
+\family default
+ when executed on a uniform particle distribution.
+ For this case, precompute only the translation operators 
+\begin_inset Formula $T^{\text{(ofo)}}$
+\end_inset
+
+, 
+\begin_inset Formula $T^{\text{(ifo)}}$
+\end_inset
+
+, and 
+\begin_inset Formula $T^{\text{(ifi)}}$
+\end_inset
+
+ (i.e.
+ set 
+\family typewriter
+flag_precomp=0
+\family default
+).
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Estimate and plot the execution time of the FMM for the choices 
+\begin_inset Formula 
+\[
+N_{\text{tot}}=1000,2000,4000,8000,16000,32000,64000.
+\]
+
+\end_inset
+
+Set 
+\family typewriter
+nmax=50
+\family default
+.
+ Provide plots that track the following costs:
+\begin_inset Formula 
+\begin{align*}
+t_{\text{tot}} & \text{ total execution time, including initialization}\\
+t_{\text{init}} & \text{ cost of initialization (computing the tree, the object T\_OPS, etc.)}\\
+t_{\text{ofs}} & \text{ cost of applying }T^{\text{(ofs)}}\\
+t_{\text{ofo}} & \text{ cost of applying }T^{\text{(ofo)}}\\
+t_{\text{ifo}} & \text{ cost of applying }T^{\text{(ifo)}}\\
+t_{\text{ifi}} & \text{ cost of applying }T^{\text{(ifi)}}\\
+t_{\text{tfi}} & \text{ cost of applying }T^{\text{(tfi)}}\\
+t_{\text{close}} & \text{ cost of directly evaluating close range interactions}
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Repeat exercise (a) but now for a few different choices of 
+\family typewriter
+nmax
+\family default
+.
+ Which one is the best one? Provide a new plot of the times required for
+ this optimal choice
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solutions:
+\end_layout
+
+\begin_layout Enumerate
+The results are shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p2-a-50"
+
+\end_inset
+
+.
+ The time needed for each component as well as in total grows in powers
+ of 
+\begin_inset Formula $N_{tot}$
+\end_inset
+
+, i.e.
+ in the form of 
+\begin_inset Formula $\sim N_{tot}^{\alpha}$
+\end_inset
+
+.
+ The orders are fitted and shown in the legend.
+ Generally speaking, the initialization takes quite a portion of time when
+ 
+\begin_inset Formula $N_{tot}$
+\end_inset
+
+ is small but it scales slowly.
+ A good amount of time is spent in applying 
+\begin_inset Formula $T^{\text{(ofs)}}$
+\end_inset
+
+ and it scales linearly with 
+\begin_inset Formula $N_{tot}$
+\end_inset
+
+.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p2-demo-nmax-50-flag_geo-3.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+nmax=50
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p2-a-50"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p2-demo-nmax-200-flag_geo-3.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+nmax=200
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p2-a-200"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison and breakdown of computational time.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p2-a"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+We repeat the experiment and try different values for nmax.
+ It seems that a larger value of nmax is probably better which we pick 200
+ in this case, as shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p2-a-200"
+
+\end_inset
+
+.
+ Some conclusions remain the same, e.g.
+ 
+\begin_inset Formula $T^{\text{(ofs)}}$
+\end_inset
+
+ costs linear time and the initialization has a slow scaling.
+ With that being said, the improvement is somehow marginal; we save some
+ time in the 
+\begin_inset Formula $T^{\text{(ifo)}}$
+\end_inset
+
+ operator but the 
+\begin_inset Formula $T^{\text{(ofs)}}$
+\end_inset
+
+ one takes a bit more time.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape italic
+[Optional]
+\shape default
+ Repeat Problem 3.2 but now use a non-uniform point distribution of your
+ choice.
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Solutions:
+\begin_inset Newline newline
+\end_inset
+
+
+\series default
+We construct a horseshoe magnet-shape domain (Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p3-domain"
+
+\end_inset
+
+) and test the time consumed, as shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p3"
+
+\end_inset
+
+.
+ This time nmax=100 seems to be a better choice over nmax=50.
+ The asymptotic bahaviors are quite similar as compared to the uniform case:
+ the initialization scales slower for large 
+\begin_inset Formula $N_{tot}$
+\end_inset
+
+ while 
+\begin_inset Formula $T^{\text{(ofs)}}$
+\end_inset
+
+ has a larger constant in its linear scaling.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename protofmm/plot/grid-ntot-1600-nmax-20-flag_geo-4.epsc
+	width 40line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A horseshoe magnet-shape domain.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p3-domain"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p2-demo-nmax-50-flag_geo-4.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+nmax=50
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p3-a-50"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p2-demo-nmax-100-flag_geo-4.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+nmax=100
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p3-a-100"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Comparison and breakdown of computational time.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p3"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\shape italic
+[Optional]
+\shape default
+ Can you think of a better way of computing the interaction lists? Here
+ “better” could mean either a cleaner code that executes in more or less
+ the same time, or a code that executes significantly faster than the provided
+ one.
+ If your code is both cleaner and faster then so much the better!
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+[Optional]
+\shape default
+ Code up the single-level Barnes-Hut method and investigate computationally
+ how many boxes you should use for optimal performance for any given precision
+ and given total number 
+\begin_inset Formula $N_{\text{tot}}$
+\end_inset
+
+ of charges.
+ Create a plot of the best possible time 
+\begin_inset Formula $t_{\text{optimal}}$
+\end_inset
+
+ for several 
+\begin_inset Formula $N_{\text{tot}}$
+\end_inset
+
+ and estimate the dependence of 
+\begin_inset Formula $t_{\text{optimal}}$
+\end_inset
+
+ on 
+\begin_inset Formula $N_{\text{tot}}$
+\end_inset
+
+.
+ To keep things simple, consider only uniform particle distributions.
+ You need only consider a fixed precision (say 
+\begin_inset Formula $P=10$
+\end_inset
+
+) but an ambitious solution should compute the optimal time for several
+ different choices (say 
+\begin_inset Formula $P=5,10,15,20$
+\end_inset
+
+).
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+
+\series bold
+Solutions:
+\end_layout
+
+\begin_layout Standard
+We implement the single-level Barnes-Hut method which supports arbitrary
+ positions of sources
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+See 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/owen8877/Sp22-M397C/blob/master/hw5/hw05p05.m"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ To verify the algorithm is correctly implemented, we test whether the error
+ converges with increasing precision parameter 
+\begin_inset Formula $P$
+\end_inset
+
+.
+ Shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p5-error"
+
+\end_inset
+
+, it is clear that the error converges by 
+\begin_inset Formula $\sim P^{-\alpha}$
+\end_inset
+
+ and the convergence speed is independent of numbers of boxes.
+ Following this, we would like to inverstigate what is the optimal number
+ of boxes and how the best possible time depends on 
+\begin_inset Formula $N_{\text{tot}}$
+\end_inset
+
+.
+ We try a combination of different 
+\begin_inset Formula $N_{\text{tot}}$
+\end_inset
+
+ and 
+\begin_inset Formula $M$
+\end_inset
+
+ (the total number of boxes), shown in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p5-time"
+
+\end_inset
+
+.
+ Based on this, we can find the optimal configuration for different 
+\begin_inset Formula $N_{\text{tot}}$
+\end_inset
+
+.
+ As indicated in Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p5-optimal-time"
+
+\end_inset
+
+ and Fig.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:p5-boxes"
+
+\end_inset
+
+, we empirically find that
+\begin_inset Formula 
+\[
+t_{\text{opt}}\sim N_{\text{tot}}^{1.4},M_{\text{opt}}\sim N_{\text{tot}}^{0.64}.
+\]
+
+\end_inset
+
+Recall that the theoretical asymptotic optimal 
+\begin_inset Formula $M$
+\end_inset
+
+ scales with 
+\begin_inset Formula $N_{\text{tot}}^{0.5}$
+\end_inset
+
+, so experimentally more boxes are more favorable.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p5-error-boxes.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Error of potential decreases with increasing 
+\begin_inset Formula $P$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p5-error"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p5-time-boxes.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p5-time"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p5-time-fit.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Optimal time needed scales with 
+\begin_inset Formula $N_{\text{tot}}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p5-optimal-time"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename p5-boxes-fit.epsc
+	width 50line%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Optimal number of boxes scales with 
+\begin_inset Formula $N_{\text{tot}}$
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:p5-boxes"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In this problem, 
+\begin_inset Formula $n$
+\end_inset
+
+ and 
+\begin_inset Formula $k$
+\end_inset
+
+ are positive integers such that 
+\begin_inset Formula $k<n$
+\end_inset
+
+, 
+\begin_inset Formula $A$
+\end_inset
+
+ is an 
+\begin_inset Formula $N\times N$
+\end_inset
+
+ invertible matrix, and 
+\begin_inset Formula $B=A^{-1}$
+\end_inset
+
+.
+ Let us further assume that every diagonal block of 
+\begin_inset Formula $A$
+\end_inset
+
+ is invertible.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Suppose that 
+\begin_inset Formula $N=2n$
+\end_inset
+
+, and that we can write 
+\begin_inset Formula $A$
+\end_inset
+
+ and 
+\begin_inset Formula $B$
+\end_inset
+
+ as
+\begin_inset Formula 
+\[
+A=\left(\begin{array}{cc}
+A_{11} & A_{12}\\
+A_{21} & A_{22}
+\end{array}\right),B=\left(\begin{array}{cc}
+B_{11} & B_{12}\\
+B_{21} & B_{22}
+\end{array}\right),
+\]
+
+\end_inset
+
+where each block is of size 
+\begin_inset Formula $n\times n$
+\end_inset
+
+.
+ Suppose further that 
+\begin_inset Formula $A_{12}$
+\end_inset
+
+ and 
+\begin_inset Formula $A_{21}$
+\end_inset
+
+ have rank 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ What is the highest possible value for the rank of 
+\begin_inset Formula $B_{12}$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+Suppose that 
+\begin_inset Formula $N=4n$
+\end_inset
+
+, and that we can write A and B as
+\begin_inset Formula 
+\[
+A=\left(\begin{array}{cccc}
+A_{11} & A_{12} & A_{13} & A_{14}\\
+A_{21} & A_{22} & A_{23} & A_{24}\\
+A_{31} & A_{32} & A_{33} & A_{34}\\
+A_{41} & A_{42} & A_{43} & A_{44}
+\end{array}\right),B=\left(\begin{array}{cccc}
+B_{11} & B_{12} & B_{13} & B_{14}\\
+B_{21} & B_{22} & B_{23} & B_{24}\\
+B_{31} & B_{32} & B_{33} & B_{34}\\
+B_{41} & B_{42} & B_{43} & B_{44}
+\end{array}\right),
+\]
+
+\end_inset
+
+where each block is of size 
+\begin_inset Formula $n\times n$
+\end_inset
+
+.
+ Suppose further that 
+\begin_inset Formula $A_{12}$
+\end_inset
+
+, 
+\begin_inset Formula $A_{21}$
+\end_inset
+
+, 
+\begin_inset Formula $A_{34}$
+\end_inset
+
+, 
+\begin_inset Formula $A_{43}$
+\end_inset
+
+, 
+\begin_inset Formula $\left(\begin{array}{cc}
+A_{13} & A_{14}\\
+A_{23} & A_{24}
+\end{array}\right)$
+\end_inset
+
+ , and 
+\begin_inset Formula $\left(\begin{array}{cc}
+A_{31} & A_{32}\\
+A_{41} & A_{42}
+\end{array}\right)$
+\end_inset
+
+ all have rank 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ What is the highest possible value for the rank of 
+\begin_inset Formula $B_{12}$
+\end_inset
+
+?
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+[Optional:]
+\shape default
+ Consider the natural generalization to a matrix consisting of 
+\begin_inset Formula $8\times8$
+\end_inset
+
+ blocks.
+ What is the maximal rank of 
+\begin_inset Formula $B_{12}$
+\end_inset
+
+? What about a matrix with 
+\begin_inset Formula $2^{p}\times2^{p}$
+\end_inset
+
+ blocks? Please motivate your answers.
+ If you rely on any formula for the inverse of a blocked matrix, then you
+ may freely assume that any inverse that appears actually exists.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solutions:
+\end_layout
+
+\begin_layout Enumerate
+Since 
+\begin_inset Formula $AB=BA=I$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\[
+A_{11}B_{12}+A_{12}B_{22}=0\Rightarrow B_{12}=-A_{11}^{-1}A_{12}B_{22}.
+\]
+
+\end_inset
+
+Since rank may reduce after matrix product, 
+\begin_inset Formula $\text{rank}B_{12}\le\min\left\{ \text{rank}A_{11},\text{\text{rank}B_{22}}\right\} \le k$
+\end_inset
+
+.
+ We construct the following case to show that this maximum can be attained.
+ In fact, let 
+\begin_inset Formula $A_{11}=A_{22}=I_{n}$
+\end_inset
+
+, 
+\begin_inset Formula $A_{12}=\text{diag}\left(I_{k},0_{n-k}\right)$
+\end_inset
+
+, and 
+\begin_inset Formula $A_{21}=-A_{12}$
+\end_inset
+
+.
+ Then the inverse 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+ reads
+\begin_inset Formula 
+\[
+A^{-1}=\left(\begin{array}{cc}
+I_{n}-\frac{1}{2}A_{12} & -\frac{1}{2}A_{12}\\
+\frac{1}{2}A_{12} & I_{n}-\frac{1}{2}A_{12}
+\end{array}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $B_{21}=-\frac{1}{2}A_{21}$
+\end_inset
+
+ has rank 
+\begin_inset Formula $k$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+The following block inversion formula is handy:
+\begin_inset Formula 
+\begin{equation}
+\left(\begin{array}{cc}
+X & Y\\
+Z & W
+\end{array}\right)^{-1}=\left(\begin{array}{cc}
+\widehat{X} & -\widehat{X}YW^{-1}\\
+-\widehat{W}ZX^{-1} & \widehat{W}
+\end{array}\right),\widehat{X}:=\left(X-YW^{-1}Z\right)^{-1},\widehat{W}:=\left(W-ZX^{-1}Y\right)^{-1}.\label{eq:p6-b-block-inversion}
+\end{equation}
+
+\end_inset
+
+We identify in Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p6-b-block-inversion"
+
+\end_inset
+
+ 
+\begin_inset Formula 
+\[
+X:=\left(\begin{array}{cc}
+A_{11} & A_{12}\\
+A_{21} & A_{22}
+\end{array}\right),Y=\left(\begin{array}{c}
+Y_{1}^{T}\\
+Y_{2}^{T}
+\end{array}\right):=\left(\begin{array}{cc}
+A_{13} & A_{14}\\
+A_{23} & A_{24}
+\end{array}\right),
+\]
+
+\end_inset
+
+
+\begin_inset Formula 
+\[
+Z=\left(Z_{1},Z_{2}\right):=\left(\begin{array}{cc}
+A_{31} & A_{32}\\
+A_{41} & A_{42}
+\end{array}\right),W:=\left(\begin{array}{cc}
+A_{33} & A_{34}\\
+A_{43} & A_{44}
+\end{array}\right),
+\]
+
+\end_inset
+
+and let 
+\begin_inset Formula $W^{-1}=:\left(\begin{array}{cc}
+\Lambda_{33} & \Lambda_{34}\\
+\Lambda_{43} & \Lambda_{44}
+\end{array}\right)$
+\end_inset
+
+.
+ A direct calculation yields that 
+\begin_inset Formula 
+\[
+X-YW^{-1}Z=\left(\begin{array}{cc}
+A_{11}-Y_{1}^{T}W^{-1}Z_{1} & A_{12}-Y_{1}^{T}W^{-1}Z_{2}\\
+A_{21}-Y_{2}^{T}W^{-1}Z_{1} & A_{22}-Y_{2}^{T}W^{-1}Z_{2}
+\end{array}\right).
+\]
+
+\end_inset
+
+One can simply assume that 
+\begin_inset Formula $A_{kk}-Y_{k}^{T}W^{-1}Z_{k},k=1,2$
+\end_inset
+
+ is invertible, or otherwise a small perturbation can help to avoid singularity.
+ However, for the off-diagonal blocks,
+\begin_inset Formula 
+\begin{equation}
+\text{rank}\left(A_{12}-Y_{1}^{T}W^{-1}Z_{2}\right)\le\text{rank}A_{12}+\text{rank}\left(Y_{1}^{T}W^{-1}Z_{2}\right)\le\min\left\{ k+k,n\right\} =\min\left\{ 2k,n\right\} \label{eq:p6-b-rank of off diagonal}
+\end{equation}
+
+\end_inset
+
+and similarly 
+\begin_inset Formula $\text{rank}\left(A_{21}-Y_{2}^{T}W^{-1}Z_{1}\right)\le\min\left\{ 2k,n\right\} $
+\end_inset
+
+, so the reduced blocks are still of low rank, but the rank can increase.
+ Then, one can use the established result that the rank of the upper-right
+ block to 
+\begin_inset Formula $\widehat{X}=\left(X-YW^{-1}Z\right)^{-1}$
+\end_inset
+
+ shall be no more than 
+\begin_inset Formula $\min\left\{ 2k,n\right\} $
+\end_inset
+
+.
+ This can be verified numerically (see code
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+see 
+\begin_inset CommandInset href
+LatexCommand href
+target "https://github.com/owen8877/Sp22-M397C/blob/master/hw5/hw05p06.m"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Enumerate
+In general, we can recursively show that the rank of 
+\begin_inset Formula $B_{21}$
+\end_inset
+
+ is at most 
+\begin_inset Formula $\min\left\{ 2^{p-1}k,n\right\} $
+\end_inset
+
+ for 
+\begin_inset Formula $N=2^{p}n$
+\end_inset
+
+.
+ To establish the recursive argument, we start with the concept of 
+\begin_inset Formula $S\left(k\right)$
+\end_inset
+
+-matrix: we call a matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ is a 
+\begin_inset Formula $S\left(k\right)$
+\end_inset
+
+-matrix, if 
+\begin_inset Formula $\text{rank}A\le k$
+\end_inset
+
+ or 
+\begin_inset Formula $A=\left(\begin{array}{cc}
+A_{11} & A_{12}\\
+A_{21} & A_{22}
+\end{array}\right)$
+\end_inset
+
+ where 
+\begin_inset Formula $A_{11},A_{22}\in S\left(k\right)$
+\end_inset
+
+ and 
+\begin_inset Formula $\text{rank}A_{12},\text{rank}A_{21}\le k$
+\end_inset
+
+.
+ Then, for 
+\begin_inset Formula $N=2^{p}n$
+\end_inset
+
+ and a 
+\begin_inset Formula $S\left(k\right)$
+\end_inset
+
+-matrix 
+\begin_inset Formula $A$
+\end_inset
+
+ of size 
+\begin_inset Formula $N\times N$
+\end_inset
+
+, we partition it into the following blocks
+\begin_inset Formula 
+\[
+A=A^{\left(p\right)}=\left(\begin{array}{cc}
+A_{11}^{\left(p-1\right)} & A_{12}^{\left(p-1\right)}\\
+A_{21}^{\left(p-1\right)} & A_{22}^{\left(p-1\right)}
+\end{array}\right),A_{ij}^{\left(p-1\right)}=\left(\begin{array}{cc}
+A_{\left(2i-1\right),\left(2j-1\right)}^{\left(p-2\right)} & A_{\left(2i-1\right),\left(2j\right)}^{\left(p-2\right)}\\
+A_{\left(2i\right),\left(2j-1\right)}^{\left(p-2\right)} & A_{\left(2i\right),\left(2j\right)}^{\left(p-2\right)}
+\end{array}\right).
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula $A_{12}^{\left(p-1\right)},A_{21}^{\left(p-1\right)},A_{12}^{\left(p-2\right)},A_{21}^{\left(p-2\right)},A_{34}^{\left(p-2\right)},A_{43}^{\left(p-2\right)}$
+\end_inset
+
+ are of rank 
+\begin_inset Formula $k$
+\end_inset
+
+.
+ By Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p6-b-block-inversion"
+
+\end_inset
+
+,
+\begin_inset Formula 
+\[
+A^{-1}=\left(\begin{array}{cc}
+A_{11}^{\left(p-1\right)} & A_{12}^{\left(p-1\right)}\\
+A_{21}^{\left(p-1\right)} & A_{22}^{\left(p-1\right)}
+\end{array}\right)^{-1}=\left(\begin{array}{cc}
+\widehat{A_{11}^{\left(p-1\right)}} & \dots\\
+\dots & \dots
+\end{array}\right)
+\]
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\[
+\left(\widehat{A_{11}^{\left(p-1\right)}}\right)^{-1}=A_{11}^{\left(p-1\right)}-A_{12}^{\left(p-1\right)}\left(A_{22}^{\left(p-1\right)}\right)^{-1}A_{21}^{\left(p-1\right)}
+\]
+
+\end_inset
+
+is a 
+\begin_inset Formula $S\left(2k\right)$
+\end_inset
+
+-matrix.
+ In fact, it is a natural generalization of Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p6-b-rank of off diagonal"
+
+\end_inset
+
+ where the off-diagonal block of 
+\begin_inset Formula $\left(\widehat{A_{11}^{\left(p-1\right)}}\right)^{-1}$
+\end_inset
+
+ has at most rank 
+\begin_inset Formula $2k$
+\end_inset
+
+.
+ Then 
+\begin_inset Formula $\left(\widehat{A_{11}^{\left(p-1\right)}}\right)^{-1}$
+\end_inset
+
+ is a 
+\begin_inset Formula $S\left(2k\right)$
+\end_inset
+
+-matrix of size 
+\begin_inset Formula $N/2\times N/2$
+\end_inset
+
+, so one can recursively perform the decomposition and obtain a sequence
+ of 
+\begin_inset Formula $S\left(2^{l}k\right)$
+\end_inset
+
+-matrix of size 
+\begin_inset Formula $N/2^{l}\times N/2^{l}$
+\end_inset
+
+, before reaching 
+\begin_inset Formula $B_{21}$
+\end_inset
+
+.
+ Thus, 
+\begin_inset Formula $\text{rank}B_{21}\le\min\left\{ 2^{p-1}k,n\right\} $
+\end_inset
+
+.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+In this problem, let 
+\begin_inset Formula $k$
+\end_inset
+
+ and 
+\begin_inset Formula $n$
+\end_inset
+
+ be integers such that 
+\begin_inset Formula $0<k<n$
+\end_inset
+
+.
+ Further, let 
+\begin_inset Formula $D\in\bR^{n\times n},U\in\bR^{n\times k},V\in\bR^{n\times k}$
+\end_inset
+
+, and 
+\begin_inset Formula $\widetilde{A}\in\bR^{k\times k}$
+\end_inset
+
+.
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Set 
+\begin_inset Formula $A=I+UV^{*}$
+\end_inset
+
+.
+ Prove that if 
+\begin_inset Formula $I+V^{*}U$
+\end_inset
+
+ is non-singular, then
+\begin_inset Formula 
+\[
+A^{-1}=I-U\left(I+V^{*}U\right)^{-1}V^{*}.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Set 
+\begin_inset Formula $A=D+U\widetilde{A}V^{*}$
+\end_inset
+
+.
+ Prove that if 
+\begin_inset Formula $D$
+\end_inset
+
+ and 
+\begin_inset Formula $I+\widetilde{A}V^{*}D^{-1}U$
+\end_inset
+
+ are both invertible, then 
+\begin_inset Formula 
+\begin{equation}
+A^{-1}=D^{-1}-D^{-1}U\left(I+\widetilde{A}V^{*}D^{-1}U\right)^{-1}\widetilde{A}V^{*}D^{-1}.\label{eq:p7-1}
+\end{equation}
+
+\end_inset
+
+Hint: You could write 
+\begin_inset Formula $A=D\left(I+\left(D^{-1}U\right)\left(\widetilde{A}V^{*}\right)\right)$
+\end_inset
+
+ and apply (a).
+\end_layout
+
+\begin_layout Enumerate
+As in (b), set 
+\begin_inset Formula $A=D+U\widetilde{A}V^{*}$
+\end_inset
+
+, and assume that 
+\begin_inset Formula $D$
+\end_inset
+
+ and 
+\begin_inset Formula $I+\widetilde{A}V^{*}D^{-1}U$
+\end_inset
+
+ are both invertible.
+ Consider the linear system 
+\begin_inset Formula 
+\begin{equation}
+\left[\begin{array}{cc}
+D & U\widetilde{A}\\
+-V^{*} & I
+\end{array}\right]\left[\begin{array}{c}
+x\\
+\widetilde{x}
+\end{array}\right]=\left[\begin{array}{c}
+b\\
+0
+\end{array}\right].\label{eq:p7-2}
+\end{equation}
+
+\end_inset
+
+Prove that if 
+\begin_inset Formula $\left[x,\widetilde{x}\right]^{T}$
+\end_inset
+
+ solves Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p7-2"
+
+\end_inset
+
+, then 
+\begin_inset Formula $x$
+\end_inset
+
+ solves 
+\begin_inset Formula $Ax=b$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+Assume again that 
+\begin_inset Formula $D$
+\end_inset
+
+ is invertible.
+ You can then perform one step of a block LDU factorization to obtain the
+ equality 
+\begin_inset Formula 
+\begin{equation}
+\left[\begin{array}{cc}
+D & U\widetilde{A}\\
+-V^{*} & I
+\end{array}\right]=\left[\begin{array}{cc}
+I\\
+X & I
+\end{array}\right]\left[\begin{array}{cc}
+D\\
+ & Y
+\end{array}\right]\left[\begin{array}{cc}
+I & Z\\
+ & I
+\end{array}\right]\label{eq:p7-3}
+\end{equation}
+
+\end_inset
+
+for some matrices 
+\begin_inset Formula $X,Y$
+\end_inset
+
+, and 
+\begin_inset Formula $Z$
+\end_inset
+
+.
+ Specify 
+\begin_inset Formula $X,Y$
+\end_inset
+
+, and 
+\begin_inset Formula $Z$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+
+\shape italic
+[Optional:]
+\shape default
+ Observe that the formula Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p7-1"
+
+\end_inset
+
+ is not ideal for inverting a block separable matrix.
+ The reason is that neither 
+\begin_inset Formula $\widetilde{A}$
+\end_inset
+
+ nor 
+\begin_inset Formula $\left(I+\widetilde{A}V^{*}D^{-1}U\right)^{-1}$
+\end_inset
+
+ is block diagonal, so multiplying them together would be costly.
+ In class, we instead used 
+\begin_inset Formula 
+\begin{equation}
+A^{-1}=G+E\left(\widehat{D}+\widetilde{A}\right)^{-1}F^{*},\label{eq:p7-4}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula 
+\begin{align*}
+\widehat{D} & =\left(V^{*}D^{-1}U\right)^{-1},\\
+E & =D^{-1}U\widehat{D},\\
+F & =\left(\widehat{D}V^{*}D^{-1}\right)^{*},\\
+G & =D^{-1}-D^{-1}U\widehat{D}V^{*}D^{-1}.
+\end{align*}
+
+\end_inset
+
+For Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p7-4"
+
+\end_inset
+
+ to hold, we need to assume that 
+\begin_inset Formula $V^{*}D^{-1}U$
+\end_inset
+
+ is non-singular.
+ Observe that 
+\begin_inset Formula $\widehat{D},E,F$
+\end_inset
+
+, and 
+\begin_inset Formula $G$
+\end_inset
+
+ are all block diagonal.
+ Prove 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p7-4"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Solutions:
+\end_layout
+
+\begin_layout Enumerate
+A direct calculation yields
+\begin_inset Formula 
+\begin{align*}
+\left(I+UV^{*}\right)\left[I-U\left(I+V^{*}U\right)^{-1}V^{*}\right] & =I+UV^{*}-U\left(I+V^{*}U\right)^{-1}V^{*}-UV^{*}U\left(I+V^{*}U\right)^{-1}V^{*}\\
+ & =I+UV^{*}-U\left(I+V^{*}U\right)\left(I+V^{*}U\right)^{-1}V^{*}\\
+ & =I+UV^{*}-UV^{*}\\
+ & =I.
+\end{align*}
+
+\end_inset
+
+Since 
+\begin_inset Formula $I+UV^{*}$
+\end_inset
+
+ and 
+\begin_inset Formula $I-U\left(I+V^{*}U\right)^{-1}V^{*}$
+\end_inset
+
+ are finite dimensional sqaure matrices and the (one-side) product is the
+ identity, they are inverse matrices.
+\end_layout
+
+\begin_layout Enumerate
+Write 
+\begin_inset Formula $A$
+\end_inset
+
+ as 
+\begin_inset Formula $D\left(I+\left(D^{-1}U\right)\left(\widetilde{A}V^{*}\right)\right)$
+\end_inset
+
+ and apply the established equation, we have
+\begin_inset Formula 
+\begin{align*}
+A^{-1} & =\left[I-\underset{U\text{ part}}{\left(D^{-1}U\right)}\left(I+\underset{V\text{ part}}{\left(\widetilde{A}V^{*}\right)}\underset{U\text{ part}}{\left(D^{-1}U\right)}\right)^{-1}\underset{V\text{ part}}{\left(\widetilde{A}V^{*}\right)}\right]D^{-1}\\
+ & =D^{-1}-\left(D^{-1}U\right)\left(I+\widetilde{A}V^{*}D^{-1}U\right)^{-1}\left(\widetilde{A}V^{*}\right)D^{-1}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+We evaluate the block product in Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p7-2"
+
+\end_inset
+
+ and arrive at
+\begin_inset Formula 
+\begin{equation}
+\begin{cases}
+Dx+U\widetilde{A}\widetilde{x} & =b\\
+-V^{*}x+\widetilde{x} & =0
+\end{cases}.\label{eq:p7-c-2}
+\end{equation}
+
+\end_inset
+
+By the second equation we have 
+\begin_inset Formula $\widetilde{x}=V^{*}x$
+\end_inset
+
+ which can be plugged into the first equation to conclude that
+\begin_inset Formula 
+\[
+b=Dx+U\widetilde{A}\widetilde{x}=Dx+U\widetilde{A}V^{*}x=Ax.
+\]
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+We start by simplifying the RHS of Eqn.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:p7-3"
+
+\end_inset
+
+:
+\begin_inset Formula 
+\[
+\left[\begin{array}{cc}
+I\\
+X & I
+\end{array}\right]\left[\begin{array}{cc}
+D\\
+ & Y
+\end{array}\right]\left[\begin{array}{cc}
+I & Z\\
+ & I
+\end{array}\right]=\left[\begin{array}{cc}
+D\\
+XD & Y
+\end{array}\right]\left[\begin{array}{cc}
+I & Z\\
+ & I
+\end{array}\right]=\left[\begin{array}{cc}
+D & DZ\\
+XD & XDZ+Y
+\end{array}\right].
+\]
+
+\end_inset
+
+We can match each block entry with 
+\begin_inset Formula $\left[\begin{array}{cc}
+D & U\widetilde{A}\\
+-V^{*} & I
+\end{array}\right]$
+\end_inset
+
+ to conclude that
+\begin_inset Formula 
+\begin{align*}
+X & =-V^{*}D^{-1},\\
+Z & =D^{-1}U\widetilde{A},\\
+Y & =I-XDZ=I+V^{*}D^{-1}U\widetilde{A}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+We would like to simplify (i.e.
+ reduce the occurence of 
+\begin_inset Formula $\widetilde{A}$
+\end_inset
+
+ in) 
+\begin_inset Formula $\left(I+\widetilde{A}V^{*}D^{-1}U\right)^{-1}\widetilde{A}$
+\end_inset
+
+ on a theoretical level while keeping a good block-diagonal structure.
+ By definition of 
+\begin_inset Formula $\widehat{D}$
+\end_inset
+
+, we have
+\begin_inset Formula 
+\begin{align*}
+\left(I+\widetilde{A}V^{*}D^{-1}U\right)^{-1}\widetilde{A} & =\left(I+\widetilde{A}\widehat{D}^{-1}\right)^{-1}\widetilde{A}\\
+ & =\left[\left(\widehat{D}+\widetilde{A}\right)\widehat{D}^{-1}\right]^{-1}\left[\left(\widehat{D}+\widetilde{A}\right)-\widehat{D}\right]\\
+ & =\widehat{D}\left(\widehat{D}+\widetilde{A}\right)^{-1}\left[\left(\widehat{D}+\widetilde{A}\right)-\widehat{D}\right]\\
+ & =\widehat{D}-\widehat{D}\left(\widehat{D}+\widetilde{A}\right)^{-1}\widehat{D}.
+\end{align*}
+
+\end_inset
+
+Thus, 
+\begin_inset Formula $A^{-1}$
+\end_inset
+
+ can be calculated via
+\begin_inset Formula 
+\begin{align*}
+A^{-1} & =D^{-1}-D^{-1}U\left(I+\widetilde{A}V^{*}D^{-1}U\right)^{-1}\widetilde{A}V^{*}D^{-1}\\
+ & =D^{-1}-D^{-1}U\left[\widehat{D}-\widehat{D}\left(\widehat{D}+\widetilde{A}\right)^{-1}\widehat{D}\right]V^{*}D^{-1}\\
+ & =D^{-1}-D^{-1}U\widehat{D}V^{*}D^{-1}+\left(D^{-1}U\widehat{D}\right)\left(\widehat{D}+\widetilde{A}\right)^{-1}\left(\widehat{D}V^{*}D^{-1}\right)\\
+ & =G+E\left(\widehat{D}+\widetilde{A}\right)^{-1}F^{*}.
+\end{align*}
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
